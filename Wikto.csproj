@@ -96,8 +96,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetSkin.SkinControls, Version=1.1.2363.24368, Culture=neutral" />
-    <Reference Include="Org.Mentalis.Security, Version=1.0.13.716, Culture=neutral" />
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -239,8 +237,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Third Party\DotNetSkin.SkinControls.dll" />
-    <Content Include="Third Party\Org.Mentalis.Security.dll" />
     <Content Include="wikto_logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

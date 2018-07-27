@@ -71,12 +71,12 @@ namespace SensePost.Wikto
         public void setshowstartreg(bool ShowTheForm)
         {
             //now we have to write the filename location to the registry
-            RegistryKey OurKey = Registry.LocalMachine;
+            RegistryKey OurKey = Registry.CurrentUser;
             OurKey = OurKey.OpenSubKey("SOFTWARE", true);
             OurKey.CreateSubKey("SensePost");
             OurKey.CreateSubKey(@"SensePost\Wikto");
 
-            RegistryKey NewKey = Registry.LocalMachine;
+            RegistryKey NewKey = Registry.CurrentUser;
             NewKey = NewKey.OpenSubKey(@"SOFTWARE\SensePost\Wikto", true);
             try
             {
@@ -99,12 +99,12 @@ namespace SensePost.Wikto
         public void setwizstartreg(bool ShowTheForm)
         {
             //now we have to write the filename location to the registry
-            RegistryKey OurKey = Registry.LocalMachine;
+            RegistryKey OurKey = Registry.CurrentUser;
             OurKey = OurKey.OpenSubKey("SOFTWARE", true);
             OurKey.CreateSubKey("SensePost");
             OurKey.CreateSubKey(@"SensePost\Wikto");
 
-            RegistryKey NewKey = Registry.LocalMachine;
+            RegistryKey NewKey = Registry.CurrentUser;
             NewKey = NewKey.OpenSubKey(@"SOFTWARE\SensePost\Wikto", true);
             try
             {

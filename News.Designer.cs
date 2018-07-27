@@ -31,9 +31,9 @@ namespace SensePost.Wikto
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(News));
             this.pnl_Main1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.chk_ShowStart = new DotNetSkin.SkinControls.SkinCheckBox();
-            this.btn_NewsClose = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.chk_StartWiz = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chk_ShowStart = new System.Windows.Forms.CheckBox();
+            this.btn_NewsClose = new System.Windows.Forms.Button();
+            this.chk_StartWiz = new System.Windows.Forms.CheckBox();
             this.ocx_Browser = new System.Windows.Forms.WebBrowser();
             this.pnl_Main1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -155,10 +155,10 @@ namespace SensePost.Wikto
 
         private System.Windows.Forms.TableLayoutPanel pnl_Main1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private DotNetSkin.SkinControls.SkinCheckBox chk_ShowStart;
+        private System.Windows.Forms.CheckBox chk_ShowStart;
         private System.Windows.Forms.WebBrowser ocx_Browser;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_NewsClose;
-        private DotNetSkin.SkinControls.SkinCheckBox chk_StartWiz;
+        private System.Windows.Forms.Button btn_NewsClose;
+        private System.Windows.Forms.CheckBox chk_StartWiz;
 
 
     }

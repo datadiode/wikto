@@ -30,8 +30,8 @@ namespace SensePost.Wikto
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditItems));
             this.txt_Items = new System.Windows.Forms.TextBox();
-            this.btn_OK = new DotNetSkin.SkinControls.SkinButtonGreen();
-            this.btn_Cancel = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_OK = new System.Windows.Forms.Button();
+            this.btn_Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_Items
@@ -73,7 +73,7 @@ namespace SensePost.Wikto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
+            this.BackColor = System.Drawing.Color.Silver;
             this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(540, 516);
             this.Controls.Add(this.btn_Cancel);
@@ -93,7 +93,7 @@ namespace SensePost.Wikto
         #endregion
 
         private System.Windows.Forms.TextBox txt_Items;
-        private DotNetSkin.SkinControls.SkinButtonGreen btn_OK;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_Cancel;
+        private System.Windows.Forms.Button btn_OK;
+        private System.Windows.Forms.Button btn_Cancel;
     }
 }

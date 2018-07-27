@@ -32,8 +32,8 @@ using SensePost.Wikto.com.google.api;
 using System.Xml;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
-using Org.Mentalis.Security.Ssl;
-using Org.Mentalis.Security.Certificates;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SensePost.Wikto
 {
@@ -217,7 +217,7 @@ namespace SensePost.Wikto
         private Panel pnl_GHMQ1;
         private TextBox txtGoogleHackOnceOff;
         private Panel pnl_GHMQ2;
-        private DotNetSkin.SkinControls.SkinButton btn_GHManualQuery;
+        private Button btn_GHManualQuery;
         private Panel pbl_GoogleHackDb;
         private ListBox lstGoogleHack;
         private Panel pnl_GHDesc;
@@ -227,22 +227,22 @@ namespace SensePost.Wikto
         private Panel pnl_GHRes1;
         private Label label4;
         private Panel pnl_GHRes2;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_GHClearResults;
+        private Button btn_GHClearResults;
         private Panel pnl_GHRes3;
         private ListBox lstGoogleHackResults;
         private Panel panel6;
         private Label lblGoogleHackEst;
         private Label lblGoogleHackPage;
-        private DotNetSkin.SkinControls.SkinButton btn_GHLoadDatabase;
+        private Button btn_GHLoadDatabase;
         private Label label1;
         private Label lblGoogleHackStatus;
         private ProgressBar prgGHQuick;
         private ProgressBar prgsGoogleHackAll;
         private TextBox txtGoogleHackTarget;
         private PictureBox pictureBox7;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_GHQuit;
-        private DotNetSkin.SkinControls.SkinButtonYellow btn_GHStop;
-        private DotNetSkin.SkinControls.SkinButtonGreen btn_GHStart;
+        private Button btn_GHQuit;
+        private Button btn_GHStop;
+        private Button btn_GHStart;
         private Label label21;
         private Label label24;
         private TabPage BackEndMiner;
@@ -252,19 +252,19 @@ namespace SensePost.Wikto
         private TableLayoutPanel tpnl_BackEndTop;
         private Panel pnl_BETopLeft1;
         private Label label13;
-        private DotNetSkin.SkinControls.SkinButton btn_BEImportInDirG;
-        private DotNetSkin.SkinControls.SkinButton btn_BEInDirImportM;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEInDirClear;
+        private Button btn_BEImportInDirG;
+        private Button btn_BEInDirImportM;
+        private Button btn_BEInDirClear;
         private Panel pbl_TopLeft3;
         private RichTextBox txtInDirs;
         private Panel pnl_BETopMid1;
         private Label label15;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEInFileClear;
+        private Button btn_BEInFileClear;
         private Panel pnl_BETopMid3;
         private RichTextBox txtInFiles;
         private Panel pnl_BETopRight1;
         private Label label38;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEInExtClear;
+        private Button btn_BEInExtClear;
         private Panel pnl_BETopRight3;
         private RichTextBox txtInFileTypes;
         private Panel pnl_BackEndBottom;
@@ -272,29 +272,29 @@ namespace SensePost.Wikto
         private TableLayoutPanel tpnl_BEBottom2;
         private Panel pnl_BEBottomLeft1;
         private Label label50;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEOutDirClear;
+        private Button btn_BEOutDirClear;
         private Panel pnl_BEBottomLeft3;
         private TableLayoutPanel tpnl_BEBottomRight;
         private Panel pnl_BEBottomRight1;
         private Label label59;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEOutIndexClear;
+        private Button btn_BEOutIndexClear;
         private Panel pnl_BEBottomRight3;
         private TableLayoutPanel tpnl_BEFiles;
         private Panel pnl_BEFile1;
         private Label label52;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEOutFileClear;
+        private Button btn_BEOutFileClear;
         private Panel pnl_BEFile3;
         private Panel panel4;
-        private DotNetSkin.SkinControls.SkinCheckBox chkPreserve;
-        private DotNetSkin.SkinControls.SkinButtonYellow btn_BESkiptoDirs;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEQuit;
-        private DotNetSkin.SkinControls.SkinButtonYellow btn_BEStop;
-        private DotNetSkin.SkinControls.SkinButtonGreen btn_BEStart;
-        private DotNetSkin.SkinControls.SkinButtonYellow btn_BESkiptoFiles;
-        private DotNetSkin.SkinControls.SkinButtonGreen btn_BackEndExport;
+        private CheckBox chkPreserve;
+        private Button btn_BESkiptoDirs;
+        private Button btn_BEQuit;
+        private Button btn_BEStop;
+        private Button btn_BEStart;
+        private Button btn_BESkiptoFiles;
+        private Button btn_BackEndExport;
         private GroupBox groupBox10;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_BEClearDB;
-        private DotNetSkin.SkinControls.SkinCheckBox chkBackEndAI;
+        private Button btn_BEClearDB;
+        private CheckBox chkBackEndAI;
         private NumericUpDown NUPDOWNBackEnd;
         private TextBox txtErrorCodeFile;
         private TextBox txtErrorCodeDir;
@@ -302,15 +302,15 @@ namespace SensePost.Wikto
         private Label label11;
         private Label label14;
         private GroupBox groupBox11;
-        private DotNetSkin.SkinControls.SkinButton btn_BEUpdateFromSP;
+        private Button btn_BEUpdateFromSP;
         private ComboBox cmbBackEndUpdate;
-        private DotNetSkin.SkinControls.SkinButton btn_BELoadExts;
-        private DotNetSkin.SkinControls.SkinButton btn_BELoadFiles;
+        private Button btn_BELoadExts;
+        private Button btn_BELoadFiles;
         private GroupBox groupBox12;
         private Label label9;
         private Label label8;
         private TextBox txtIPPort;
-        private DotNetSkin.SkinControls.SkinCheckBox chkBackEnduseSSLport;
+        private CheckBox chkBackEnduseSSLport;
         private TextBox txtIPNumber;
         private Label label56;
         private PictureBox pictureBox3;
@@ -324,10 +324,10 @@ namespace SensePost.Wikto
         private TableLayoutPanel tpnl_WiktoT1;
         private Panel pnl_WiktoTL1;
         private Label label5;
-        private DotNetSkin.SkinControls.SkinButton btn_WiktoImportBackEnd;
-        private DotNetSkin.SkinControls.SkinButton btn_WiktoImportGoogle;
-        private DotNetSkin.SkinControls.SkinButton btn_WiktoImportMirror;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_WiktoClearCGI;
+        private Button btn_WiktoImportBackEnd;
+        private Button btn_WiktoImportGoogle;
+        private Button btn_WiktoImportMirror;
+        private Button btn_WiktoClearCGI;
         private Panel pnl_WiktoTL3;
         private ListBox lst_NiktoCGI;
         private TableLayoutPanel tpnl_WiktoT2;
@@ -366,25 +366,25 @@ namespace SensePost.Wikto
         private Label label2;
         private ProgressBar prgNik;
         private ProgressBar prgNiktoWork;
-        private DotNetSkin.SkinControls.SkinButton btn_NiktoLoad;
-        private DotNetSkin.SkinControls.SkinButtonGreen skinButtonGreen2;
+        private Button btn_NiktoLoad;
+        private Button skinButtonGreen2;
         private Label lblNiktoAI;
         private GroupBox groupBox13;
-        private DotNetSkin.SkinControls.SkinButtonRed btnClearNiktoAI;
-        private DotNetSkin.SkinControls.SkinButton btnNiktoRestFuzz;
-        private DotNetSkin.SkinControls.SkinButton btnNiktoShowAll;
-        private DotNetSkin.SkinControls.SkinButton btnNiktoFuzzUpdate;
+        private Button btnClearNiktoAI;
+        private Button btnNiktoRestFuzz;
+        private Button btnNiktoShowAll;
+        private Button btnNiktoFuzzUpdate;
         private NumericUpDown NUPDOWNfuzz;
         private GroupBox groupBox14;
-        private DotNetSkin.SkinControls.SkinCheckBox chkuseSSLWikto;
+        private CheckBox chkuseSSLWikto;
         private TextBox txtNiktoPort;
         private TextBox txtNiktoTarget;
         private Label label28;
         private Label label29;
         private PictureBox pictureBox2;
-        private DotNetSkin.SkinControls.SkinButtonRed skinButtonRed1;
-        private DotNetSkin.SkinControls.SkinButtonYellow btn_WiktoStop;
-        private DotNetSkin.SkinControls.SkinButtonGreen btn_WiktoStart;
+        private Button skinButtonRed1;
+        private Button btn_WiktoStop;
+        private Button btn_WiktoStart;
         private Label label3;
         private TabPage Googler;
         private TableLayoutPanel tpnlGoogleMain;
@@ -399,7 +399,7 @@ namespace SensePost.Wikto
         private Panel pnlGoogleDirLeft;
         private Label label20;
         private Panel pnlGoogleDirRight;
-        private DotNetSkin.SkinControls.SkinButtonRed btnGoogleClearDir;
+        private Button btnGoogleClearDir;
         private Panel pnlGoogleDirMain;
         private ListBox lstGoogleDir;
         private TableLayoutPanel tpnlGoogleLink;
@@ -407,15 +407,15 @@ namespace SensePost.Wikto
         private Panel pnlGoogleLinkLeft;
         private Label label7;
         private Panel pnlGoogleLinkRight;
-        private DotNetSkin.SkinControls.SkinButtonRed btnGoogleClearLink;
+        private Button btnGoogleClearLink;
         private Panel pnlGoogleLinkMain;
         private ListBox lstGoogleLink;
         private Panel pnlGoogleLeft;
         private Label lblGoogleStatus;
         private PictureBox pictureBox4;
-        private DotNetSkin.SkinControls.SkinButtonRed btnGoogleQuit;
-        private DotNetSkin.SkinControls.SkinButtonYellow btnStopGoole;
-        private DotNetSkin.SkinControls.SkinButtonGreen btnGoogleStart;
+        private Button btnGoogleQuit;
+        private Button btnStopGoole;
+        private Button btnGoogleStart;
         private Label label54;
         private ProgressBar prgGoogle;
         private Label label55;
@@ -432,7 +432,7 @@ namespace SensePost.Wikto
         private Panel pnlMirrorLinkLeft;
         private Label label34;
         private Panel pnlMrrorLinkRight;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_MirrorClearLinks;
+        private Button btn_MirrorClearLinks;
         private ListBox lstMirrorLinks;
         private TableLayoutPanel tpnlMirrorDir;
         private ListBox lstMirrorDirs;
@@ -440,26 +440,26 @@ namespace SensePost.Wikto
         private Panel pnlMirrorDirLeft;
         private Label label31;
         private Panel pnlMirrorDirRight;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_MirrorClearDirs;
+        private Button btn_MirrorClearDirs;
         private Panel pnlMirrorLeft;
         private Label lblMirrorStatus;
         private PictureBox pictureBox6;
         private TextBox txtHTTarget;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_MirrorQuit;
-        private DotNetSkin.SkinControls.SkinButtonYellow btnHTStop;
-        private DotNetSkin.SkinControls.SkinButtonGreen btnHTStart;
+        private Button btn_MirrorQuit;
+        private Button btnHTStop;
+        private Button btnHTStart;
         private Label label32;
         private ProgressBar prgHT;
         private TabControl tabControl1;
-        private DotNetSkin.SkinControls.SkinRadioButton radioHEAD;
-        private DotNetSkin.SkinControls.SkinRadioButton radioGET;
-        private DotNetSkin.SkinControls.SkinButton btn_BELoadDirs;
+        private RadioButton radioHEAD;
+        private RadioButton radioGET;
+        private Button btn_BELoadDirs;
         private Panel pnl_ConfigMain;
         private TabControl tab_configMain;
         private TabPage cfg_Proxy;
         private Panel panel1;
         private PictureBox pictureBox5;
-        private DotNetSkin.SkinControls.SkinCheckBox chkProxyPresent;
+        private CheckBox chkProxyPresent;
         private TextBox txtProxySettings;
         private Label label17;
         private TabPage cfg_Google;
@@ -480,14 +480,14 @@ namespace SensePost.Wikto
         private TextBox txtURLUpdateNiktoDB;
         private TextBox txtURLUpdate;
         private Label label25;
-        private DotNetSkin.SkinControls.SkinButton btn_CfgLocateNDb;
-        private DotNetSkin.SkinControls.SkinButton btn_CfgLocateGDb;
+        private Button btn_CfgLocateNDb;
+        private Button btn_CfgLocateGDb;
         private Label label27;
         private TextBox txtHeader;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_CnfReset;
-        private DotNetSkin.SkinControls.SkinButtonYellow btn_CnfSave;
-        private DotNetSkin.SkinControls.SkinButtonGreen btn_CnfLoad;
-        private DotNetSkin.SkinControls.SkinButtonRed btn_CnfQuit;
+        private Button btn_CnfReset;
+        private Button btn_CnfSave;
+        private Button btn_CnfLoad;
+        private Button btn_CnfQuit;
         private Label label37;
         private Label lblConfigFileLocation;
         private TabPage cfg_Help;
@@ -497,9 +497,9 @@ namespace SensePost.Wikto
         private Label label39;
         private Label label47;
         private Label lbl_About;
-        private DotNetSkin.SkinControls.SkinButton skinButton4;
-        private DotNetSkin.SkinControls.SkinButton skinButton5;
-        private DotNetSkin.SkinControls.SkinButton skinButton6;
+        private Button skinButton4;
+        private Button skinButton5;
+        private Button skinButton6;
         private TabPage cfg_Spider;
         private Label label63;
         private NumericUpDown NUPDOWNspider;
@@ -507,19 +507,19 @@ namespace SensePost.Wikto
         private Label label67;
         public TextBox txt_ConfigSpiderExclude;
         private TextBox txt_ConfigSpiderExtension;
-        private DotNetSkin.SkinControls.SkinCheckBox chk_SpiderSSL;
+        private CheckBox chk_SpiderSSL;
         private Label label10;
         private TextBox txt_SpiderPort;
-        private DotNetSkin.SkinControls.SkinCheckBox chkOptimizedNikto;
-        private DotNetSkin.SkinControls.SkinButton btnBackEndPause;
-        private DotNetSkin.SkinControls.SkinButton btnPauseWikto;
+        private CheckBox chkOptimizedNikto;
+        private Button btnBackEndPause;
+        private Button btnPauseWikto;
         private TabPage cfg_Startup;
-        private DotNetSkin.SkinControls.SkinButton btn_ShowNews;
-        private DotNetSkin.SkinControls.SkinCheckBox chk_ShowStart;
+        private Button btn_ShowNews;
+        private CheckBox chk_ShowStart;
         private TabPage tab_wizard;
-        private DotNetSkin.SkinControls.SkinCheckBox chk_StartWiz;
-        private DotNetSkin.SkinControls.SkinButton btn_browseghdb;
-        private DotNetSkin.SkinControls.SkinButton btn_browsenikto;
+        private CheckBox chk_StartWiz;
+        private Button btn_browseghdb;
+        private Button btn_browsenikto;
         private Label label35;
         private TextBox txt_content;
         private Label label33;
@@ -529,9 +529,9 @@ namespace SensePost.Wikto
         private Label label40;
         private TextBox txt_idxflags;
         private Label label42;
-        private DotNetSkin.SkinControls.SkinCheckBox chk_ignoreidx;
+        private CheckBox chk_ignoreidx;
         private GroupBox groupBox1;
-        private DotNetSkin.SkinControls.SkinCheckBox chkTimeAnomalies;
+        private CheckBox chkTimeAnomalies;
         private NumericUpDown nudTimeAnomaly;
         private ListView lstViewDirs;
         private ImageList imageList1;
@@ -544,14 +544,14 @@ namespace SensePost.Wikto
         private ColumnHeader columnHeader8;
         private ColumnHeader columnHeader9;
         private ListViewColumnSorter lvwColumnSorter;
-        private DotNetSkin.SkinControls.SkinButton btn_StartAura;
+        private Button btn_StartAura;
         private NumericUpDown updownGoogleDepth;
         private Label label18;
         private ColumnHeader columnHeader10;
-        private DotNetSkin.SkinControls.SkinButton btn_EditDirs;
+        private Button btn_EditDirs;
         private Label label19;
         private TextBox txtSpudDirectory;
-        private DotNetSkin.SkinControls.SkinButton btnSpudLocate;
+        private Button btnSpudLocate;
         private PictureBox pictureBox1;
 		private System.ComponentModel.IContainer components;
 		#endregion
@@ -627,12 +627,12 @@ namespace SensePost.Wikto
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.cntxtGoogleHacks = new System.Windows.Forms.ContextMenu();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btn_CfgLocateNDb = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_CfgLocateGDb = new DotNetSkin.SkinControls.SkinButton();
+            this.btn_CfgLocateNDb = new System.Windows.Forms.Button();
+            this.btn_CfgLocateGDb = new System.Windows.Forms.Button();
             this.txtDBLocationGH = new System.Windows.Forms.TextBox();
             this.txtDBlocationNikto = new System.Windows.Forms.TextBox();
             this.txtHeader = new System.Windows.Forms.TextBox();
-            this.chkProxyPresent = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chkProxyPresent = new System.Windows.Forms.CheckBox();
             this.txtProxySettings = new System.Windows.Forms.TextBox();
             this.NUPDOWNspider = new System.Windows.Forms.NumericUpDown();
             this.txt_ConfigSpiderExclude = new System.Windows.Forms.TextBox();
@@ -642,74 +642,74 @@ namespace SensePost.Wikto
             this.txtURLUpdateGHDB = new System.Windows.Forms.TextBox();
             this.txtURLUpdateNiktoDB = new System.Windows.Forms.TextBox();
             this.txtURLUpdate = new System.Windows.Forms.TextBox();
-            this.btn_ShowNews = new DotNetSkin.SkinControls.SkinButton();
-            this.chk_ShowStart = new DotNetSkin.SkinControls.SkinCheckBox();
-            this.btn_CnfQuit = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btn_CnfReset = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btn_CnfSave = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btn_CnfLoad = new DotNetSkin.SkinControls.SkinButtonGreen();
-            this.btn_GHManualQuery = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_GHLoadDatabase = new DotNetSkin.SkinControls.SkinButton();
+            this.btn_ShowNews = new System.Windows.Forms.Button();
+            this.chk_ShowStart = new System.Windows.Forms.CheckBox();
+            this.btn_CnfQuit = new System.Windows.Forms.Button();
+            this.btn_CnfReset = new System.Windows.Forms.Button();
+            this.btn_CnfSave = new System.Windows.Forms.Button();
+            this.btn_CnfLoad = new System.Windows.Forms.Button();
+            this.btn_GHManualQuery = new System.Windows.Forms.Button();
+            this.btn_GHLoadDatabase = new System.Windows.Forms.Button();
             this.txtGoogleHackTarget = new System.Windows.Forms.TextBox();
-            this.btn_GHQuit = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btn_GHStop = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btn_GHStart = new DotNetSkin.SkinControls.SkinButtonGreen();
-            this.btn_BEInDirImportM = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_BEImportInDirG = new DotNetSkin.SkinControls.SkinButton();
-            this.btnBackEndPause = new DotNetSkin.SkinControls.SkinButton();
-            this.chkPreserve = new DotNetSkin.SkinControls.SkinCheckBox();
-            this.btn_BESkiptoDirs = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btn_BEQuit = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btn_BEStop = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btn_BEStart = new DotNetSkin.SkinControls.SkinButtonGreen();
-            this.btn_BESkiptoFiles = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btn_BackEndExport = new DotNetSkin.SkinControls.SkinButtonGreen();
-            this.skinButton4 = new DotNetSkin.SkinControls.SkinButton();
-            this.skinButton5 = new DotNetSkin.SkinControls.SkinButton();
-            this.skinButton6 = new DotNetSkin.SkinControls.SkinButton();
-            this.radioHEAD = new DotNetSkin.SkinControls.SkinRadioButton();
-            this.radioGET = new DotNetSkin.SkinControls.SkinRadioButton();
-            this.btn_BEClearDB = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.chkBackEndAI = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.btn_GHQuit = new System.Windows.Forms.Button();
+            this.btn_GHStop = new System.Windows.Forms.Button();
+            this.btn_GHStart = new System.Windows.Forms.Button();
+            this.btn_BEInDirImportM = new System.Windows.Forms.Button();
+            this.btn_BEImportInDirG = new System.Windows.Forms.Button();
+            this.btnBackEndPause = new System.Windows.Forms.Button();
+            this.chkPreserve = new System.Windows.Forms.CheckBox();
+            this.btn_BESkiptoDirs = new System.Windows.Forms.Button();
+            this.btn_BEQuit = new System.Windows.Forms.Button();
+            this.btn_BEStop = new System.Windows.Forms.Button();
+            this.btn_BEStart = new System.Windows.Forms.Button();
+            this.btn_BESkiptoFiles = new System.Windows.Forms.Button();
+            this.btn_BackEndExport = new System.Windows.Forms.Button();
+            this.skinButton4 = new System.Windows.Forms.Button();
+            this.skinButton5 = new System.Windows.Forms.Button();
+            this.skinButton6 = new System.Windows.Forms.Button();
+            this.radioHEAD = new System.Windows.Forms.RadioButton();
+            this.radioGET = new System.Windows.Forms.RadioButton();
+            this.btn_BEClearDB = new System.Windows.Forms.Button();
+            this.chkBackEndAI = new System.Windows.Forms.CheckBox();
             this.txtErrorCodeDir = new System.Windows.Forms.TextBox();
             this.txtErrorCodeFile = new System.Windows.Forms.TextBox();
-            this.btn_BELoadDirs = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_BEUpdateFromSP = new DotNetSkin.SkinControls.SkinButton();
+            this.btn_BELoadDirs = new System.Windows.Forms.Button();
+            this.btn_BEUpdateFromSP = new System.Windows.Forms.Button();
             this.cmbBackEndUpdate = new System.Windows.Forms.ComboBox();
-            this.btn_BELoadExts = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_BELoadFiles = new DotNetSkin.SkinControls.SkinButton();
+            this.btn_BELoadExts = new System.Windows.Forms.Button();
+            this.btn_BELoadFiles = new System.Windows.Forms.Button();
             this.txtIPPort = new System.Windows.Forms.TextBox();
-            this.chkBackEnduseSSLport = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chkBackEnduseSSLport = new System.Windows.Forms.CheckBox();
             this.txtIPNumber = new System.Windows.Forms.TextBox();
-            this.btn_WiktoImportBackEnd = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_WiktoImportMirror = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_WiktoImportGoogle = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_NiktoLoad = new DotNetSkin.SkinControls.SkinButton();
-            this.skinButtonGreen2 = new DotNetSkin.SkinControls.SkinButtonGreen();
-            this.btnClearNiktoAI = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btnNiktoRestFuzz = new DotNetSkin.SkinControls.SkinButton();
-            this.btnNiktoShowAll = new DotNetSkin.SkinControls.SkinButton();
-            this.chkOptimizedNikto = new DotNetSkin.SkinControls.SkinCheckBox();
-            this.btnNiktoFuzzUpdate = new DotNetSkin.SkinControls.SkinButton();
+            this.btn_WiktoImportBackEnd = new System.Windows.Forms.Button();
+            this.btn_WiktoImportMirror = new System.Windows.Forms.Button();
+            this.btn_WiktoImportGoogle = new System.Windows.Forms.Button();
+            this.btn_NiktoLoad = new System.Windows.Forms.Button();
+            this.skinButtonGreen2 = new System.Windows.Forms.Button();
+            this.btnClearNiktoAI = new System.Windows.Forms.Button();
+            this.btnNiktoRestFuzz = new System.Windows.Forms.Button();
+            this.btnNiktoShowAll = new System.Windows.Forms.Button();
+            this.chkOptimizedNikto = new System.Windows.Forms.CheckBox();
+            this.btnNiktoFuzzUpdate = new System.Windows.Forms.Button();
             this.NUPDOWNfuzz = new System.Windows.Forms.NumericUpDown();
-            this.chkuseSSLWikto = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chkuseSSLWikto = new System.Windows.Forms.CheckBox();
             this.txtNiktoPort = new System.Windows.Forms.TextBox();
             this.txtNiktoTarget = new System.Windows.Forms.TextBox();
-            this.skinButtonRed1 = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btn_WiktoStop = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btn_WiktoStart = new DotNetSkin.SkinControls.SkinButtonGreen();
-            this.btnGoogleQuit = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btnStopGoole = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btnGoogleStart = new DotNetSkin.SkinControls.SkinButtonGreen();
+            this.skinButtonRed1 = new System.Windows.Forms.Button();
+            this.btn_WiktoStop = new System.Windows.Forms.Button();
+            this.btn_WiktoStart = new System.Windows.Forms.Button();
+            this.btnGoogleQuit = new System.Windows.Forms.Button();
+            this.btnStopGoole = new System.Windows.Forms.Button();
+            this.btnGoogleStart = new System.Windows.Forms.Button();
             this.txtWords = new System.Windows.Forms.TextBox();
             this.txtGoogleKeyword = new System.Windows.Forms.TextBox();
             this.txtGoogleTarget = new System.Windows.Forms.TextBox();
-            this.chk_SpiderSSL = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chk_SpiderSSL = new System.Windows.Forms.CheckBox();
             this.txt_SpiderPort = new System.Windows.Forms.TextBox();
             this.txtHTTarget = new System.Windows.Forms.TextBox();
-            this.btn_MirrorQuit = new DotNetSkin.SkinControls.SkinButtonRed();
-            this.btnHTStop = new DotNetSkin.SkinControls.SkinButtonYellow();
-            this.btnHTStart = new DotNetSkin.SkinControls.SkinButtonGreen();
+            this.btn_MirrorQuit = new System.Windows.Forms.Button();
+            this.btnHTStop = new System.Windows.Forms.Button();
+            this.btnHTStart = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Mirror = new System.Windows.Forms.TabPage();
             this.tpnlMirror = new System.Windows.Forms.TableLayoutPanel();
@@ -718,7 +718,7 @@ namespace SensePost.Wikto
             this.pnlMirrorLinkLeft = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.pnlMrrorLinkRight = new System.Windows.Forms.Panel();
-            this.btn_MirrorClearLinks = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_MirrorClearLinks = new System.Windows.Forms.Button();
             this.lstMirrorLinks = new System.Windows.Forms.ListBox();
             this.tpnlMirrorDir = new System.Windows.Forms.TableLayoutPanel();
             this.lstMirrorDirs = new System.Windows.Forms.ListBox();
@@ -726,7 +726,7 @@ namespace SensePost.Wikto
             this.pnlMirrorDirLeft = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
             this.pnlMirrorDirRight = new System.Windows.Forms.Panel();
-            this.btn_MirrorClearDirs = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_MirrorClearDirs = new System.Windows.Forms.Button();
             this.pnlMirrorLeft = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -747,7 +747,7 @@ namespace SensePost.Wikto
             this.pnlGoogleDirLeft = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.pnlGoogleDirRight = new System.Windows.Forms.Panel();
-            this.btnGoogleClearDir = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btnGoogleClearDir = new System.Windows.Forms.Button();
             this.pnlGoogleDirMain = new System.Windows.Forms.Panel();
             this.lstGoogleDir = new System.Windows.Forms.ListBox();
             this.tpnlGoogleLink = new System.Windows.Forms.TableLayoutPanel();
@@ -755,7 +755,7 @@ namespace SensePost.Wikto
             this.pnlGoogleLinkLeft = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.pnlGoogleLinkRight = new System.Windows.Forms.Panel();
-            this.btnGoogleClearLink = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btnGoogleClearLink = new System.Windows.Forms.Button();
             this.pnlGoogleLinkMain = new System.Windows.Forms.Panel();
             this.lstGoogleLink = new System.Windows.Forms.ListBox();
             this.pnlGoogleLeft = new System.Windows.Forms.Panel();
@@ -774,16 +774,16 @@ namespace SensePost.Wikto
             this.tpnl_BackEndTop = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_BETopLeft1 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
-            this.btn_BEInDirClear = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_BEInDirClear = new System.Windows.Forms.Button();
             this.pbl_TopLeft3 = new System.Windows.Forms.Panel();
             this.txtInDirs = new System.Windows.Forms.RichTextBox();
             this.pnl_BETopMid1 = new System.Windows.Forms.Panel();
-            this.btn_BEInFileClear = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_BEInFileClear = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.pnl_BETopMid3 = new System.Windows.Forms.Panel();
             this.txtInFiles = new System.Windows.Forms.RichTextBox();
             this.pnl_BETopRight1 = new System.Windows.Forms.Panel();
-            this.btn_BEInExtClear = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_BEInExtClear = new System.Windows.Forms.Button();
             this.label38 = new System.Windows.Forms.Label();
             this.pnl_BETopRight3 = new System.Windows.Forms.Panel();
             this.txtInFileTypes = new System.Windows.Forms.RichTextBox();
@@ -791,7 +791,7 @@ namespace SensePost.Wikto
             this.tpnl_BEBottom1 = new System.Windows.Forms.TableLayoutPanel();
             this.tpnl_BEBottom2 = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_BEBottomLeft1 = new System.Windows.Forms.Panel();
-            this.btn_BEOutDirClear = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_BEOutDirClear = new System.Windows.Forms.Button();
             this.label50 = new System.Windows.Forms.Label();
             this.pnl_BEBottomLeft3 = new System.Windows.Forms.Panel();
             this.lstViewDirs = new System.Windows.Forms.ListView();
@@ -800,7 +800,7 @@ namespace SensePost.Wikto
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tpnl_BEBottomRight = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_BEBottomRight1 = new System.Windows.Forms.Panel();
-            this.btn_BEOutIndexClear = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_BEOutIndexClear = new System.Windows.Forms.Button();
             this.label59 = new System.Windows.Forms.Label();
             this.pnl_BEBottomRight3 = new System.Windows.Forms.Panel();
             this.lstViewIndexDirs = new System.Windows.Forms.ListView();
@@ -808,7 +808,7 @@ namespace SensePost.Wikto
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.tpnl_BEFiles = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_BEFile1 = new System.Windows.Forms.Panel();
-            this.btn_BEOutFileClear = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_BEOutFileClear = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.pnl_BEFile3 = new System.Windows.Forms.Panel();
             this.lstViewFiles = new System.Windows.Forms.ListView();
@@ -817,7 +817,7 @@ namespace SensePost.Wikto
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nudTimeAnomaly = new System.Windows.Forms.NumericUpDown();
-            this.chkTimeAnomalies = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chkTimeAnomalies = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.NUPDOWNBackEnd = new System.Windows.Forms.NumericUpDown();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -871,13 +871,13 @@ namespace SensePost.Wikto
             this.col_target = new System.Windows.Forms.ColumnHeader();
             this.tpnl_WiktoT1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnl_WiktoTL1 = new System.Windows.Forms.Panel();
-            this.btn_EditDirs = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_WiktoClearCGI = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_EditDirs = new System.Windows.Forms.Button();
+            this.btn_WiktoClearCGI = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.pnl_WiktoTL3 = new System.Windows.Forms.Panel();
             this.lst_NiktoCGI = new System.Windows.Forms.ListBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnPauseWikto = new DotNetSkin.SkinControls.SkinButton();
+            this.btnPauseWikto = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.prgNik = new System.Windows.Forms.ProgressBar();
             this.prgNiktoWork = new System.Windows.Forms.ProgressBar();
@@ -904,7 +904,7 @@ namespace SensePost.Wikto
             this.pnl_GHRes1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pnl_GHRes2 = new System.Windows.Forms.Panel();
-            this.btn_GHClearResults = new DotNetSkin.SkinControls.SkinButtonRed();
+            this.btn_GHClearResults = new System.Windows.Forms.Button();
             this.pnl_GHRes3 = new System.Windows.Forms.Panel();
             this.lstGoogleHackResults = new System.Windows.Forms.ListBox();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -921,22 +921,22 @@ namespace SensePost.Wikto
             this.pnl_ConfigMain = new System.Windows.Forms.Panel();
             this.tab_configMain = new System.Windows.Forms.TabControl();
             this.cfg_DB = new System.Windows.Forms.TabPage();
-            this.btn_browseghdb = new DotNetSkin.SkinControls.SkinButton();
-            this.btn_browsenikto = new DotNetSkin.SkinControls.SkinButton();
+            this.btn_browseghdb = new System.Windows.Forms.Button();
+            this.btn_browsenikto = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.cfg_Header = new System.Windows.Forms.TabPage();
             this.cfg_Google = new System.Windows.Forms.TabPage();
-            this.btnSpudLocate = new DotNetSkin.SkinControls.SkinButton();
+            this.btnSpudLocate = new System.Windows.Forms.Button();
             this.txtSpudDirectory = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.btn_StartAura = new DotNetSkin.SkinControls.SkinButton();
+            this.btn_StartAura = new System.Windows.Forms.Button();
             this.updownGoogleDepth = new System.Windows.Forms.NumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
             this.cfg_Proxy = new System.Windows.Forms.TabPage();
             this.label17 = new System.Windows.Forms.Label();
             this.cfg_Spider = new System.Windows.Forms.TabPage();
-            this.chk_ignoreidx = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chk_ignoreidx = new System.Windows.Forms.CheckBox();
             this.txt_idxflags = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.txt_excdirs = new System.Windows.Forms.TextBox();
@@ -957,7 +957,7 @@ namespace SensePost.Wikto
             this.label48 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.cfg_Startup = new System.Windows.Forms.TabPage();
-            this.chk_StartWiz = new DotNetSkin.SkinControls.SkinCheckBox();
+            this.chk_StartWiz = new System.Windows.Forms.CheckBox();
             this.cfg_Help = new System.Windows.Forms.TabPage();
             this.lbl_About = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
@@ -1937,7 +1937,7 @@ namespace SensePost.Wikto
             this.btnClearNiktoAI.Size = new System.Drawing.Size(86, 21);
             this.btnClearNiktoAI.TabIndex = 14;
             this.btnClearNiktoAI.Text = "Clear DB";
-            this.toolTip1.SetToolTip(this.btnClearNiktoAI, "Clear the results dataase");
+            this.toolTip1.SetToolTip(this.btnClearNiktoAI, "Clear the results database");
             this.btnClearNiktoAI.UseVisualStyleBackColor = true;
             this.btnClearNiktoAI.Click += new System.EventHandler(this.btnClearNiktoAI_Click);
             // 
@@ -2477,7 +2477,7 @@ namespace SensePost.Wikto
             // 
             this.pnlMirrorLeft.AutoScroll = true;
             this.pnlMirrorLeft.AutoScrollMinSize = new System.Drawing.Size(220, 670);
-            this.pnlMirrorLeft.BackColor = System.Drawing.Color.Gray;
+            this.pnlMirrorLeft.BackColor = System.Drawing.Color.Silver;
             this.pnlMirrorLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlMirrorLeft.Controls.Add(this.pictureBox1);
             this.pnlMirrorLeft.Controls.Add(this.chk_SpiderSSL);
@@ -2556,7 +2556,7 @@ namespace SensePost.Wikto
             // 
             // Googler
             // 
-            this.Googler.BackColor = System.Drawing.Color.Gray;
+            this.Googler.BackColor = System.Drawing.Color.Silver;
             this.Googler.Controls.Add(this.tpnlGoogleMain);
             this.Googler.Controls.Add(this.pnlGoogleLeft);
             this.Googler.Controls.Add(this.lblQuery);
@@ -2859,7 +2859,7 @@ namespace SensePost.Wikto
             // 
             this.pnlGoogleLeft.AutoScroll = true;
             this.pnlGoogleLeft.AutoScrollMinSize = new System.Drawing.Size(220, 670);
-            this.pnlGoogleLeft.BackColor = System.Drawing.Color.Gray;
+            this.pnlGoogleLeft.BackColor = System.Drawing.Color.Silver;
             this.pnlGoogleLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGoogleLeft.Controls.Add(this.lblGoogleStatus);
             this.pnlGoogleLeft.Controls.Add(this.pictureBox4);
@@ -2962,7 +2962,7 @@ namespace SensePost.Wikto
             // 
             // BackEndMiner
             // 
-            this.BackEndMiner.BackColor = System.Drawing.Color.Gray;
+            this.BackEndMiner.BackColor = System.Drawing.Color.Silver;
             this.BackEndMiner.Controls.Add(this.pnl_BackEndMain);
             this.BackEndMiner.Controls.Add(this.panel4);
             this.BackEndMiner.Location = new System.Drawing.Point(4, 25);
@@ -3489,7 +3489,7 @@ namespace SensePost.Wikto
             this.panel4.AutoScroll = true;
             this.panel4.AutoScrollMinSize = new System.Drawing.Size(220, 670);
             this.panel4.AutoSize = true;
-            this.panel4.BackColor = System.Drawing.Color.Gray;
+            this.panel4.BackColor = System.Drawing.Color.Silver;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.groupBox1);
             this.panel4.Controls.Add(this.btnBackEndPause);
@@ -3756,7 +3756,7 @@ namespace SensePost.Wikto
             // 
             // NiktoIsh
             // 
-            this.NiktoIsh.BackColor = System.Drawing.Color.Gray;
+            this.NiktoIsh.BackColor = System.Drawing.Color.Silver;
             this.NiktoIsh.Controls.Add(this.pnl_WiktoMain);
             this.NiktoIsh.Controls.Add(this.panel5);
             this.NiktoIsh.Location = new System.Drawing.Point(4, 25);
@@ -4228,7 +4228,7 @@ namespace SensePost.Wikto
             // 
             this.panel5.AutoScroll = true;
             this.panel5.AutoScrollMinSize = new System.Drawing.Size(220, 670);
-            this.panel5.BackColor = System.Drawing.Color.Gray;
+            this.panel5.BackColor = System.Drawing.Color.Silver;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.btnPauseWikto);
             this.panel5.Controls.Add(this.label2);
@@ -4377,7 +4377,7 @@ namespace SensePost.Wikto
             // 
             // GoogleHacks
             // 
-            this.GoogleHacks.BackColor = System.Drawing.Color.Gray;
+            this.GoogleHacks.BackColor = System.Drawing.Color.Silver;
             this.GoogleHacks.Controls.Add(this.pnl_GHMain);
             this.GoogleHacks.Controls.Add(this.panel6);
             this.GoogleHacks.Location = new System.Drawing.Point(4, 25);
@@ -4604,7 +4604,7 @@ namespace SensePost.Wikto
             // 
             this.panel6.AutoScroll = true;
             this.panel6.AutoScrollMinSize = new System.Drawing.Size(220, 670);
-            this.panel6.BackColor = System.Drawing.Color.Gray;
+            this.panel6.BackColor = System.Drawing.Color.Silver;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.lblGoogleHackEst);
             this.panel6.Controls.Add(this.lblGoogleHackPage);
@@ -4725,7 +4725,7 @@ namespace SensePost.Wikto
             // 
             // pnl_configleft
             // 
-            this.pnl_configleft.BackColor = System.Drawing.Color.Gray;
+            this.pnl_configleft.BackColor = System.Drawing.Color.Silver;
             this.pnl_configleft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnl_configleft.Controls.Add(this.pnl_ConfigMain);
             this.pnl_configleft.Controls.Add(this.panel1);
@@ -5286,7 +5286,7 @@ namespace SensePost.Wikto
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoScrollMinSize = new System.Drawing.Size(220, 670);
-            this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btn_CnfQuit);
             this.panel1.Controls.Add(this.label37);
@@ -5558,6 +5558,7 @@ namespace SensePost.Wikto
         [STAThread]
 		static void Main()
         {
+            Application.EnableVisualStyles();
 			Application.Run(new frm_Wikto());
         }
         #endregion
@@ -6022,7 +6023,7 @@ namespace SensePost.Wikto
             //{
             //    try
             //    {
-            //        RegistryKey NewKey = Registry.LocalMachine;
+            //        RegistryKey NewKey = Registry.CurrentUser;
             //        NewKey = NewKey.OpenSubKey(@"SOFTWARE\Classes\Installer\Assemblies", false);
             //        string[] subkeynames = NewKey.GetSubKeyNames();
             //        foreach (string subkeyname in subkeynames)
@@ -6598,14 +6599,7 @@ namespace SensePost.Wikto
                 portRaw = proxyItems[1];
             }
             string response = "";
-            if (chkBackEnduseSSLport.Checked)
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, true);
-            }
-            else
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut);
-            }
+            response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, chkBackEnduseSSLport.Checked);
 
             //lets check indexability first
             if (response.IndexOf("ndex of") >= 0 || response.IndexOf("To Parent Directory") >= 0)
@@ -6655,14 +6649,7 @@ namespace SensePost.Wikto
                 backend_dirresults[DirNum].ai = result.ToString();
                 backend_dirresults[DirNum].responsecode = GetTheCode[1];
                 backend_dirresults[DirNum].indexable = isitIndexable;
-                if ((result < Convert.ToDouble(NUPDOWNBackEnd.Value)) && result >= 0.00)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return GetTheCode[1] != "404" && result >= 0.00 && result < Convert.ToDouble(NUPDOWNBackEnd.Value);
             }
             else
             {
@@ -6697,14 +6684,7 @@ namespace SensePost.Wikto
                 portRaw = proxyItems[1];
             }
             string response = "";
-            if (chkBackEnduseSSLport.Checked)
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, true);
-            }
-            else
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut);
-            }
+            response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, chkBackEnduseSSLport.Checked);
 
             if (chkBackEndAI.Checked == true)
             {
@@ -7087,14 +7067,7 @@ namespace SensePost.Wikto
                 AddyItem = txtNiktoTarget.Text;
                 PortItem = txtNiktoPort.Text;
             }
-            if (chkuseSSLWikto.Checked)
-            {
-                whatdoiget = sendraw(AddyItem, PortItem, whatdoisend, 1024, (int)updownTimeOutTCP.Value, true);
-            }
-            else
-            {
-                whatdoiget = sendraw(AddyItem, PortItem, whatdoisend, 1024, (int)updownTimeOutTCP.Value);
-            }
+            whatdoiget = sendraw(AddyItem, PortItem, whatdoisend, 1024, (int)updownTimeOutTCP.Value, chkuseSSLWikto.Checked);
             return whatdoiget;
         }
 
@@ -7116,14 +7089,7 @@ namespace SensePost.Wikto
                 AddyItem = txtNiktoTarget.Text;
                 PortItem = txtNiktoPort.Text;
             }
-            if (chkuseSSLWikto.Checked)
-            {
-                whatdoiget = sendraw(AddyItem, PortItem, whatdoisend, 1024, (int)updownTimeOutTCP.Value, true);
-            }
-            else
-            {
-                whatdoiget = sendraw(AddyItem, PortItem, whatdoisend, 1024, (int)updownTimeOutTCP.Value);
-            }
+            whatdoiget = sendraw(AddyItem, PortItem, whatdoisend, 1024, (int)updownTimeOutTCP.Value, chkuseSSLWikto.Checked);
             return whatdoiget;
         }
 
@@ -7690,14 +7656,7 @@ namespace SensePost.Wikto
 
             this.Invoke(this.dlgControlProgVal, new Object[] { this.prgNiktoWork, 0 });
             string response = "";
-            if (chkuseSSLWikto.Checked)
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, true);
-            }
-            else
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut);
-            }
+            response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, chkuseSSLWikto.Checked);
             this.Invoke(this.dlgControlProgVal, new Object[] { this.prgNiktoWork, 10 });
 
             nikto_result[niktoResultCounter].rawresult = response;
@@ -7758,15 +7717,7 @@ namespace SensePost.Wikto
             }
             string response = "";
             //this need fixing!!!
-            if (chkuseSSLWikto.Checked || chkBackEnduseSSLport.Checked)
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, true);
-            }
-            else
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut);
-            }
-
+            response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, chkuseSSLWikto.Checked || chkBackEnduseSSLport.Checked);
             return response;
         }
 
@@ -8625,12 +8576,12 @@ namespace SensePost.Wikto
         private void setregistry(string filename)
         {
             //now we have to write the filename location to the registry
-            RegistryKey OurKey = Registry.LocalMachine;
+            RegistryKey OurKey = Registry.CurrentUser;
             OurKey = OurKey.OpenSubKey("SOFTWARE", true);
             OurKey.CreateSubKey("SensePost");
             OurKey.CreateSubKey(@"SensePost\Wikto");
 
-            RegistryKey NewKey = Registry.LocalMachine;
+            RegistryKey NewKey = Registry.CurrentUser;
             NewKey = NewKey.OpenSubKey(@"SOFTWARE\SensePost\Wikto", true);
             try
             {
@@ -8646,12 +8597,12 @@ namespace SensePost.Wikto
         private void setregistrystart(bool ShouldIStart)
         {
             //now we have to write the filename location to the registry
-            RegistryKey OurKey = Registry.LocalMachine;
+            RegistryKey OurKey = Registry.CurrentUser;
             OurKey = OurKey.OpenSubKey("SOFTWARE", true);
             OurKey.CreateSubKey("SensePost");
             OurKey.CreateSubKey(@"SensePost\Wikto");
 
-            RegistryKey NewKey = Registry.LocalMachine;
+            RegistryKey NewKey = Registry.CurrentUser;
             NewKey = NewKey.OpenSubKey(@"SOFTWARE\SensePost\Wikto", true);
             try
             {
@@ -8668,12 +8619,12 @@ namespace SensePost.Wikto
         private void setregistrywizard(bool ShouldIStart)
         {
             //now we have to write the filename location to the registry
-            RegistryKey OurKey = Registry.LocalMachine;
+            RegistryKey OurKey = Registry.CurrentUser;
             OurKey = OurKey.OpenSubKey("SOFTWARE", true);
             OurKey.CreateSubKey("SensePost");
             OurKey.CreateSubKey(@"SensePost\Wikto");
 
-            RegistryKey NewKey = Registry.LocalMachine;
+            RegistryKey NewKey = Registry.CurrentUser;
             NewKey = NewKey.OpenSubKey(@"SOFTWARE\SensePost\Wikto", true);
             try
             {
@@ -8702,7 +8653,7 @@ namespace SensePost.Wikto
             //clear the whole thing...
             try
             {
-                RegistryKey OurKey = Registry.LocalMachine;
+                RegistryKey OurKey = Registry.CurrentUser;
                 OurKey.DeleteSubKeyTree(@"SOFTWARE\SensePost");
                 OurKey.Close();
             }
@@ -8842,7 +8793,7 @@ namespace SensePost.Wikto
             string filename = "";
             string ShowStart = "";
             string ShowWiz = "";
-            RegistryKey NewKey = Registry.LocalMachine;
+            RegistryKey NewKey = Registry.CurrentUser;
             NewKey = NewKey.OpenSubKey(@"SOFTWARE\SensePost\Wikto", true);
             try
             {
@@ -9070,7 +9021,12 @@ namespace SensePost.Wikto
 			}
         }
 
-        public string sendraw(string ipRaw, string portRaw, string payloadRaw, int size, int TimeOut)
+        public static bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+        }
+
+        public string sendraw(string ipRaw, string portRaw, string payloadRaw, int size, int TimeOut, bool useSSL)
         {
             int retry = (int)updownRetryTCP.Value;
 
@@ -9078,7 +9034,6 @@ namespace SensePost.Wikto
             {
                 try
                 {
-
                     TcpClient tcpclnt = new TcpClient();
                     tcpclnt.ReceiveTimeout = TimeOut;
                     tcpclnt.SendTimeout = TimeOut;
@@ -9090,6 +9045,12 @@ namespace SensePost.Wikto
                     tcpclnt.Connect(ipRaw, Int32.Parse(portRaw));
 
                     Stream stm = tcpclnt.GetStream();
+                    if (useSSL)
+                    {
+                        SslStream ssl = new SslStream(stm, false, new RemoteCertificateValidationCallback(ValidateServerCertificate), null);
+                        ssl.AuthenticateAsClient(ipRaw);
+                        stm = ssl;
+                    }
                     ASCIIEncoding asen = new ASCIIEncoding();
                     byte[] ba = asen.GetBytes(payloadRaw);
                     stm.Write(ba, 0, ba.Length);
@@ -9119,79 +9080,6 @@ namespace SensePost.Wikto
                     retry--;
                     this.Invoke(this.dlgControlTextSet, new Object[] { this.lblStatus, "Network problem - retry:" + Convert.ToString(retry) });
                     this.Invoke(this.dlgControlTextSet, new Object[] { this.lblNiktoAI, "Network problem - retry:" + Convert.ToString(retry) });
-                    Thread.Sleep(1000);
-                }
-            }
-
-            return "Retry count (" + updownRetryTCP.Value.ToString() + ") exceeded";
-        }
-
-        public string sendraw(string ipRaw, string portRaw, string payloadRaw, int size, int TimeOut, bool useSSL)
-        {
-            int retry = (int)updownRetryTCP.Value;
-            IPHostEntry IPHost = Dns.GetHostEntry(ipRaw);
-            //IPHostEntry IPHost = Dns.Resolve(ipRaw); 
-            string[] aliases = IPHost.Aliases;
-            IPAddress[] addr = IPHost.AddressList;
-            IPEndPoint iep;
-            SecureProtocol sp;
-            sp = SecureProtocol.Ssl3;
-            SecureSocket s = null;
-            SecurityOptions options = new SecurityOptions(sp);
-            options.Certificate = null;
-            options.Protocol = SecureProtocol.Ssl3;
-            options.Entity = ConnectionEnd.Client;
-            options.CommonName = ipRaw;
-            options.VerificationType = CredentialVerification.None;
-            options.Flags = SecurityFlags.IgnoreMaxProtocol;
-            options.AllowedAlgorithms = SslAlgorithms.ALL;
-
-            while (retry > 0)
-            {
-                try
-                {
-
-                    s = new SecureSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp, options);
-                    s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, 4000);
-                    s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 4000);
-
-                    iep = new IPEndPoint(addr[0], Convert.ToInt32(portRaw));
-
-
-                    s.Connect(iep);
-
-
-                    ASCIIEncoding asen = new ASCIIEncoding();
-                    byte[] ba = asen.GetBytes(payloadRaw);
-                    s.Send(ba, ba.Length, System.Net.Sockets.SocketFlags.None);
-
-                    byte[] bb = new byte[size];
-
-
-                    string response = "";
-                    int k = 1;
-                    while (k > 0)
-                    {
-                        k = s.Receive(bb, size, System.Net.Sockets.SocketFlags.None);
-                        for (int i = 0; i < k; i++)
-                        {
-                            response += Convert.ToChar(bb[i]);
-                        }
-                    }
-                    s.Close();
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-
-                    return response;
-
-                }
-
-
-                catch
-                {
-                    retry--;
-                    lblStatus.Text = "Network problem - retrying\r\n";
-                    lblNiktoAI.Text = "Network problem - retrying\r\n";
                     Thread.Sleep(1000);
                 }
             }
@@ -9267,14 +9155,7 @@ namespace SensePost.Wikto
                 portRaw = proxyItems[1];
             }
             string response = "";
-            if (chkBackEnduseSSLport.Checked)
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, true);
-            }
-            else
-            {
-                response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut);
-            }
+            response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, chkBackEnduseSSLport.Checked);
 
             //lets check indexability first
             if (response.IndexOf("ndex of") >= 0 || response.IndexOf("To Parent Directory") >= 0)
