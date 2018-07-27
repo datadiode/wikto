@@ -7279,7 +7279,7 @@ namespace SensePost.Wikto
                             // This is a single request - we test it once...
                             niktoRequests newNiktoRequest;
                             newNiktoRequest = niktoRequest[a];
-                            if (newNiktoRequest.sensepostreq == "")
+                            if (newNiktoRequest.sensepostreq == null)
                                 newNiktoRequest.sensepostreq = GetDummyReq(newNiktoRequest.request);
                             String RealResp = "";
                             String FakeResp = "";
@@ -7485,59 +7485,64 @@ namespace SensePost.Wikto
             try
             {
                 StreamReader fileRead = new StreamReader(filename);
-                string oreadline = "";
-                string readline = "";
-                string[] splititems = new string[5];
+                string readline;
                 int number = 0;
                 lvw_NiktoDb.Items.Clear();
-                while ((oreadline = fileRead.ReadLine()) != null)
+                while ((readline = fileRead.ReadLine()) != null)
                 {
-                    readline = oreadline.Replace("\",\"", "^");
-                    // we are not interested in the XSS stuff..
-                    try
+                    readline = readline.Trim();
+                    int n = readline.Length;
+                    if (n == 0 || readline[0] == '#')
+                        continue;
+                    bool quoting = false;
+                    bool escaping = false;
+                    int j = 0;
+                    string[] splititems = new string[6];
+                    for (int i = 0; i < n; ++i)
                     {
-                        if ((readline.IndexOf('#') == -1) &&
-                            (readline.IndexOf("<script>alert") == -1) &&
-                            (readline.IndexOf("javascript:alert") == -1) &&
-                            readline.Length > 2)
+                        switch (readline[i])
                         {
-
-                            splititems = readline.Split('^');
-
-
-                            niktoRequest[number].type = splititems[0].Replace("\"", "");
-                            niktoRequest[number].request = splititems[1].Replace("\"", ""); ;
-                            niktoRequest[number].trigger = splititems[2].Replace("\"", ""); ;
-                            niktoRequest[number].method = splititems[3].Replace("\"", ""); ;
-                            niktoRequest[number].description = splititems[4].Replace("\"", "");
-                            if (splititems.Length > 5)
-                                niktoRequest[number].sensepostreq = splititems[5].Replace("\"", "");
-                            else
-                                niktoRequest[number].sensepostreq = "";
-
-                            // Check for a match on the request
-                            Regex r = new Regex(@"JUNK\((?<junk_length>\d+)\)");
-                            Match m = r.Match(niktoRequest[number].request);
-                            if (m.Success)
+                        case '\\':
+                            escaping = !escaping;
+                            break;
+                        case '"':
+                            if (!escaping)
                             {
-                                // Match found - replace it with junk
-                                string length = m.Result("${junk_length}");
-                                niktoRequest[number].request.Replace("/abcd/", "/xxx/");
-                                string junkstring = niktoRequest[number].request.Replace("JUNK(" + length.ToString() + ")",
-                                    RandomStringGenerator(Int32.Parse(length)));
-                                niktoRequest[number].request = junkstring;
+                                quoting = !quoting;
+                                if (quoting)
+                                    continue;
                             }
-
-                            string niktoItemToAdd = niktoRequest[number].trigger + "\t" + niktoRequest[number].request;
-                            String[] MyTest = new String[2];
-                            MyTest[0] = niktoRequest[number].trigger;
-                            MyTest[1] = niktoRequest[number].request;
-                            ListViewItem lvi = new ListViewItem(MyTest);
-                            lvw_NiktoDb.Items.Add(lvi);
-                            number++;
+                            escaping = false;
+                            break;
+                        case ',':
+                            if (!quoting)
+                                ++j;
+                            escaping = false;
+                            break;
+                        default:
+                            escaping = false;
+                            break;
+                        }
+                        if (quoting && !escaping)
+                        {
+                            if (j >= 5)
+                                break;
+                            splititems[j] += readline[i];
                         }
                     }
-                    catch { }
+                    niktoRequest[number].type = splititems[0];
+                    niktoRequest[number].request = splititems[1];
+                    niktoRequest[number].trigger = splititems[2];
+                    niktoRequest[number].method = splititems[3];
+                    niktoRequest[number].description = splititems[4];
+                    niktoRequest[number].sensepostreq = splititems[5];
+                    string niktoItemToAdd = niktoRequest[number].trigger + "\t" + niktoRequest[number].request;
+                    String[] MyTest = new String[2];
+                    MyTest[0] = niktoRequest[number].trigger;
+                    MyTest[1] = niktoRequest[number].request;
+                    ListViewItem lvi = new ListViewItem(MyTest);
+                    lvw_NiktoDb.Items.Add(lvi);
+                    number++;
                 }
                 numberofNiktorequests = number;
                 fileRead.Close();
