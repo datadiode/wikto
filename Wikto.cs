@@ -125,6 +125,7 @@ namespace SensePost.Wikto
             public string trigger;
             public string method;
             public string sensepostreq;
+            public string headers;
         }
 
         public struct niktoFP
@@ -175,7 +176,7 @@ namespace SensePost.Wikto
         #endregion
 
         #region Class Variables
-        string prgVersion = "2.1";
+        const string HttpRequestLineSuffix = " HTTP/1.1\r\n";
         int numberofNiktorequests = 0;
         niktoRequests[] niktoRequest = new niktoRequests[20000];
         niktoFP[] nikto_FP = new niktoFP[200000];
@@ -612,7 +613,7 @@ namespace SensePost.Wikto
 
         public void Quitter()
         {
-            DialogResult dr = MessageBox.Show("Wikto version" + prgVersion + " by SensePost\nwww.sensepost.com\nresearch@sensepost.com\n\n\nAre you sure you want to quit?", "Keep this tool free - support us!",MessageBoxButtons.YesNo);
+            DialogResult dr = MessageBox.Show("Wikto version " + Application.ProductVersion + " by SensePost\nwww.sensepost.com\nresearch@sensepost.com\n\n\nAre you sure you want to quit?", "Keep this tool free - support us!",MessageBoxButtons.YesNo);
             if(dr.Equals(DialogResult.Yes))
                 Application.Exit();
         }
@@ -6624,6 +6625,7 @@ namespace SensePost.Wikto
                 niktoset.type = "FPtestdir";
                 niktoset.method = "GET";
                 niktoset.sensepostreq = "";
+                niktoset.headers = "";
                 string[] urlparts = new string[20];
                 urlparts = MyDir.Split('/');
                 string finalresult = "";
@@ -6700,6 +6702,7 @@ namespace SensePost.Wikto
                 niktoset.type = "FPtestfile";
                 niktoset.method = "GET";
                 niktoset.sensepostreq = "";
+                niktoset.headers = "";
                 string TestFile = "";
                 if (!MyDir.EndsWith("/"))
                     MyDir = MyDir + "/";
@@ -7008,72 +7011,31 @@ namespace SensePost.Wikto
             return Dirs;
         }
 
-        private bool IsNumeric(String niktotrig)
+        private bool IsNumeric(String s)
         {
-            niktotrig = niktotrig.ToLower();
-            int i = 0;
-            bool returner = true;
-            for (i = 0; i < niktotrig.Length; i++)
-            {
-                String tmp = niktotrig.Substring(i, 1);
-                if ((tmp != "0") &&
-                    (tmp != "1") &&
-                    (tmp != "2") &&
-                    (tmp != "3") &&
-                    (tmp != "4") &&
-                    (tmp != "5") &&
-                    (tmp != "6") &&
-                    (tmp != "7") &&
-                    (tmp != "8") &&
-                    (tmp != "9"))
-                    returner = false;
-            }
-            return returner;
+            for (int i = 0; i < s.Length; i++)
+                if (!Char.IsDigit(s[i]))
+                    return false;
+            return true;
         }
 
         private String GetNiktoRequest(niktoRequests request, bool real)
         {
             String method = request.method;
-            String returner = "";
-            if (real)
-            {
-                if (chkProxyPresent.Checked) returner = method + " http://" + txtNiktoTarget.Text + request.request + " HTTP/1.0\r\n";
-                else returner = method + " " + request.request + " HTTP/1.0\r\n";
-            }
+            String returner = real ? request.request : request.sensepostreq;
+            if (chkProxyPresent.Checked)
+                returner = method + " http://" + txtNiktoTarget.Text + returner + HttpRequestLineSuffix;
             else
-            {
-                if (chkProxyPresent.Checked) returner = method + " http://" + txtNiktoTarget.Text + request.sensepostreq + " HTTP/1.0\r\n";
-                else returner = method + " " + request.sensepostreq + " HTTP/1.0\r\n";
-            }
-            returner = returner + "\r\n\r\n";
+                returner = method + " " + returner + HttpRequestLineSuffix;
+            if (request.headers != null)
+                returner += request.headers;
+            returner += txtHeader.Text;
+            returner += "\r\n\r\n";
             return returner;
         }
 
-        private String GetNiktoFake(niktoRequests request)
+        private String GetNiktoResponse(String whatdoisend)
         {
-            String whatdoisend = GetNiktoRequest(request, false);
-            String whatdoiget = "";
-            String AddyItem = "";
-            String PortItem = "";
-            if (chkProxyPresent.Checked)
-            {
-                string[] proxyItems = new string[2];
-                proxyItems = txtProxySettings.Text.Split(':');
-                AddyItem = proxyItems[0];
-                PortItem = proxyItems[1];
-            }
-            else
-            {
-                AddyItem = txtNiktoTarget.Text;
-                PortItem = txtNiktoPort.Text;
-            }
-            whatdoiget = sendraw(AddyItem, PortItem, whatdoisend, 1024, (int)updownTimeOutTCP.Value, chkuseSSLWikto.Checked);
-            return whatdoiget;
-        }
-
-        private String GetNiktoReal(niktoRequests request)
-        {
-            String whatdoisend = GetNiktoRequest(request, true);
             String whatdoiget = "";
             String AddyItem = "";
             String PortItem = "";
@@ -7216,7 +7178,7 @@ namespace SensePost.Wikto
                                     newNiktoRequest = niktoRequest[a];
                                     newNiktoRequest.request = newNiktoRequest.request.Replace("@CGIDIRS", nCGIdir + "/");
                                     newNiktoRequest.request = newNiktoRequest.request.Replace("@ADMIN", nCGIdir + "/");
-                                    if ((newNiktoRequest.sensepostreq == "") || ((!newNiktoRequest.sensepostreq.Contains("@CGIDIRS") && (!newNiktoRequest.sensepostreq.Contains("@ADMIN")))))
+                                    if ((newNiktoRequest.sensepostreq == null) || ((!newNiktoRequest.sensepostreq.Contains("@CGIDIRS") && (!newNiktoRequest.sensepostreq.Contains("@ADMIN")))))
                                         newNiktoRequest.sensepostreq = GetDummyReq(newNiktoRequest.request);
                                     else
                                     {
@@ -7225,24 +7187,23 @@ namespace SensePost.Wikto
                                     }
                                     // We have our /CGIDIR/request and /CGIDIR/dummyrequest.  We test them now...
                                     // If its optimised, we check if there is a BLOB result in the db...
-                                    String RealResp = "";
-                                    String FakeResp = "";
-
+                                    String RealResp = GetNiktoRequest(newNiktoRequest, true);
+                                    String FakeResp = GetNiktoRequest(newNiktoRequest, false);
                                     if (chkOptimizedNikto.Checked)
                                     {
                                         if (NiktoOptimised.ContainsKey(newNiktoRequest.sensepostreq))
                                             FakeResp = NiktoOptimised[newNiktoRequest.sensepostreq].ToString();
                                         else
                                         {
-                                            FakeResp = GetNiktoFake(newNiktoRequest);
+                                            FakeResp = GetNiktoResponse(FakeResp);
                                             NiktoOptimised.Add(newNiktoRequest.sensepostreq, FakeResp);
                                         }
                                     }
                                     else
                                     {
-                                        FakeResp = GetNiktoFake(newNiktoRequest);
+                                        FakeResp = GetNiktoResponse(FakeResp);
                                     }
-                                    RealResp = GetNiktoReal(newNiktoRequest);
+                                    RealResp = GetNiktoResponse(RealResp);
                                     Double nikto_score = GetNiktoBlobDiff(FakeResp, RealResp);
                                     nikto_result[niktoResultCounter].rawrequest = newNiktoRequest.request;
                                     nikto_result[niktoResultCounter].theNiktoRequest = niktoRequest[a];
@@ -7252,7 +7213,7 @@ namespace SensePost.Wikto
                                     if (nikto_score < Convert.ToDouble(NUPDOWNfuzz.Value) && nikto_score >= 0.0000000000)
                                     {
                                         ListViewItem lvi = new ListViewItem(" ");
-
+                                        lvi.Tag = nikto_result[niktoResultCounter];
                                         if (WeirdDummy)
                                         {
                                             lvi.ImageIndex = 3;
@@ -7262,13 +7223,10 @@ namespace SensePost.Wikto
                                         {
                                             lvi.ImageIndex = 4;
                                         }
-
                                         lvi.SubItems.Add(nikto_score.ToString());
                                         lvi.SubItems.Add(newNiktoRequest.trigger);
                                         lvi.SubItems.Add(newNiktoRequest.request);
-
-                                        //this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, new ListViewItem(NiktoItemToAdd) });
-                                        this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, lvi });
+                                        Invoke(dlgControlViewAdd, new object[] { lvw_NiktoResults, lvi });
                                     }
                                     niktoResultCounter++;
                                 }
@@ -7277,27 +7235,29 @@ namespace SensePost.Wikto
                         else
                         {
                             // This is a single request - we test it once...
-                            niktoRequests newNiktoRequest;
-                            newNiktoRequest = niktoRequest[a];
+                            niktoRequests newNiktoRequest = niktoRequest[a];
+                            String postData = "";
                             if (newNiktoRequest.sensepostreq == null)
                                 newNiktoRequest.sensepostreq = GetDummyReq(newNiktoRequest.request);
-                            String RealResp = "";
-                            String FakeResp = "";
+                            else
+                                postData = newNiktoRequest.sensepostreq;
+                            String RealResp = GetNiktoRequest(newNiktoRequest, true);
+                            String FakeResp = GetNiktoRequest(newNiktoRequest, false);
                             if (chkOptimizedNikto.Checked)
                             {
                                 if (NiktoOptimised.ContainsKey(newNiktoRequest.sensepostreq))
                                     FakeResp = NiktoOptimised[newNiktoRequest.sensepostreq].ToString();
                                 else
                                 {
-                                    FakeResp = GetNiktoFake(newNiktoRequest);
+                                    FakeResp = GetNiktoResponse(FakeResp);
                                     NiktoOptimised.Add(newNiktoRequest.sensepostreq, FakeResp);
                                 }
                             }
                             else
                             {
-                                FakeResp = GetNiktoFake(newNiktoRequest);
+                                FakeResp = GetNiktoResponse(FakeResp + postData);
                             }
-                            RealResp = GetNiktoReal(newNiktoRequest);
+                            RealResp = GetNiktoResponse(RealResp + postData);
                             Double nikto_score = GetNiktoBlobDiff(FakeResp, RealResp);
                             nikto_result[niktoResultCounter].rawrequest = newNiktoRequest.request;
                             nikto_result[niktoResultCounter].theNiktoRequest = niktoRequest[a];
@@ -7308,7 +7268,7 @@ namespace SensePost.Wikto
                             {
                                 //status code, but body differs from fake request
                                 ListViewItem lvi = new ListViewItem(" ");
-
+                                lvi.Tag = nikto_result[niktoResultCounter];
                                 if (WeirdDummy)
                                 {
                                     lvi.ImageIndex = 3;
@@ -7318,13 +7278,10 @@ namespace SensePost.Wikto
                                 {
                                     lvi.ImageIndex = 4;
                                 }
-
                                 lvi.SubItems.Add(nikto_score.ToString());
                                 lvi.SubItems.Add(newNiktoRequest.trigger);
                                 lvi.SubItems.Add(newNiktoRequest.request);
-
-                                //this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, new ListViewItem(NiktoItemToAdd) });
-                                this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, lvi });
+                                Invoke(dlgControlViewAdd, new object[] { lvw_NiktoResults, lvi });
                             }
                             niktoResultCounter++;
                         }
@@ -7360,8 +7317,8 @@ namespace SensePost.Wikto
                                     newNiktoRequest = niktoRequest[a];
                                     newNiktoRequest.request = newNiktoRequest.request.Replace("@CGIDIRS", nCGIdir + "/");
                                     newNiktoRequest.request = newNiktoRequest.request.Replace("@ADMIN", nCGIdir + "/");
-                                    String RealResp = "";
-                                    RealResp = GetNiktoReal(newNiktoRequest);
+                                    String RealResp = GetNiktoRequest(newNiktoRequest, true);
+                                    RealResp = GetNiktoResponse(RealResp);
                                     Double nikto_score = 100;
                                     if (RealResp.IndexOf(newNiktoRequest.trigger) > -1) nikto_score = 0.01;
                                     nikto_result[niktoResultCounter].rawrequest = newNiktoRequest.request;
@@ -7371,20 +7328,13 @@ namespace SensePost.Wikto
                                     nikto_result[niktoResultCounter].theoriginalrequest = niktoRequest[a].request;
                                     if (nikto_score < Convert.ToDouble(NUPDOWNfuzz.Value) && nikto_score >= 0.0000000000)
                                     {
-                                        //String[] NiktoItemToAdd = new String[3];
-                                        //NiktoItemToAdd[0] = nikto_score.ToString();
-                                        //NiktoItemToAdd[1] = newNiktoRequest.trigger;
-                                        //NiktoItemToAdd[2] = newNiktoRequest.request;
-
                                         ListViewItem lvi = new ListViewItem(" ");
+                                        lvi.Tag = nikto_result[niktoResultCounter];
                                         lvi.ImageIndex = 5;
-
                                         lvi.SubItems.Add(nikto_score.ToString());
                                         lvi.SubItems.Add(newNiktoRequest.trigger);
                                         lvi.SubItems.Add(newNiktoRequest.request);
-
-                                        //this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, new ListViewItem(NiktoItemToAdd) });
-                                        this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, lvi });
+                                        Invoke(dlgControlViewAdd, new object[] { lvw_NiktoResults, lvi });
                                     }
                                     niktoResultCounter++;
                                 }
@@ -7395,8 +7345,8 @@ namespace SensePost.Wikto
                             // This is a single request - we test it once...
                             niktoRequests newNiktoRequest;
                             newNiktoRequest = niktoRequest[a];
-                            String RealResp = "";
-                            RealResp = GetNiktoReal(newNiktoRequest);
+                            String RealResp = GetNiktoRequest(newNiktoRequest, true);
+                            RealResp = GetNiktoResponse(RealResp);
                             Double nikto_score = 100;
                             if (RealResp.IndexOf(newNiktoRequest.trigger) > -1) nikto_score = 0.01;
                             nikto_result[niktoResultCounter].rawrequest = newNiktoRequest.request;
@@ -7406,21 +7356,14 @@ namespace SensePost.Wikto
                             nikto_result[niktoResultCounter].theoriginalrequest = niktoRequest[a].request;
                             if (nikto_score < Convert.ToDouble(NUPDOWNfuzz.Value) && nikto_score >= 0.0000000000)
                             {
-                                //String[] NiktoItemToAdd = new String[3];
-                                //NiktoItemToAdd[0] = nikto_score.ToString();
-                                //NiktoItemToAdd[1] = newNiktoRequest.trigger;
-                                //NiktoItemToAdd[2] = newNiktoRequest.request;
-
                                 //text trigger
                                 ListViewItem lvi = new ListViewItem(" ");
+                                lvi.Tag = nikto_result[niktoResultCounter];
                                 lvi.ImageIndex = 5;
-
                                 lvi.SubItems.Add(nikto_score.ToString());
                                 lvi.SubItems.Add(newNiktoRequest.trigger);
                                 lvi.SubItems.Add(newNiktoRequest.request);
-
-                                //this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, new ListViewItem(NiktoItemToAdd) });
-                                this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, lvi });
+                                Invoke(dlgControlViewAdd, new object[] { lvw_NiktoResults, lvi });
                             }
                             niktoResultCounter++;
                         }
@@ -7490,17 +7433,17 @@ namespace SensePost.Wikto
                 lvw_NiktoDb.Items.Clear();
                 while ((readline = fileRead.ReadLine()) != null)
                 {
-                    readline = readline.Trim();
                     int n = readline.Length;
                     if (n == 0 || readline[0] == '#')
                         continue;
                     bool quoting = false;
                     bool escaping = false;
                     int j = 0;
-                    string[] splititems = new string[6];
+                    string[] splititems = new string[16];
                     for (int i = 0; i < n; ++i)
                     {
-                        switch (readline[i])
+                        char c = readline[i];
+                        switch (c)
                         {
                         case '\\':
                             escaping = !escaping;
@@ -7520,33 +7463,41 @@ namespace SensePost.Wikto
                             escaping = false;
                             break;
                         default:
+                            if (!escaping)
+                                break;
                             escaping = false;
+                            switch (c)
+                            {
+                            case 'r': c = '\r'; break;
+                            case 'n': c = '\n'; break;
+                            }
                             break;
                         }
                         if (quoting && !escaping)
                         {
-                            if (j >= 5)
+                            if (j >= 16)
                                 break;
-                            splititems[j] += readline[i];
+                            splititems[j] += c;
                         }
                     }
                     niktoRequest[number].type = splititems[0];
-                    niktoRequest[number].request = splititems[1];
-                    niktoRequest[number].trigger = splititems[2];
-                    niktoRequest[number].method = splititems[3];
-                    niktoRequest[number].description = splititems[4];
-                    niktoRequest[number].sensepostreq = splititems[5];
-                    string niktoItemToAdd = niktoRequest[number].trigger + "\t" + niktoRequest[number].request;
-                    String[] MyTest = new String[2];
+                    niktoRequest[number].request = splititems[3];
+                    niktoRequest[number].trigger = splititems[5];
+                    niktoRequest[number].method = splititems[4];
+                    niktoRequest[number].description = splititems[10];
+                    niktoRequest[number].sensepostreq = splititems[11];
+                    niktoRequest[number].headers = splititems[12];
+                    string[] MyTest = new string[2];
                     MyTest[0] = niktoRequest[number].trigger;
                     MyTest[1] = niktoRequest[number].request;
                     ListViewItem lvi = new ListViewItem(MyTest);
+                    lvi.Tag = niktoRequest[number];
                     lvw_NiktoDb.Items.Add(lvi);
                     number++;
                 }
                 numberofNiktorequests = number;
                 fileRead.Close();
-                MessageBox.Show("Loaded " + numberofNiktorequests.ToString() + " tests from Nikto scan database", "Info");
+                //MessageBox.Show("Loaded " + numberofNiktorequests.ToString() + " tests from Nikto scan database", "Info");
             }
             catch (Exception ex)
             {
@@ -7557,86 +7508,55 @@ namespace SensePost.Wikto
 
         private void populateNiktoDesc(object sender, System.EventArgs e)
         {
-            int a = 0;
-            String[] NiktoKey = new String[2];
+            lvw_NiktoDesc.Items.Clear();
             foreach (ListViewItem lvi in lvw_NiktoDb.SelectedItems)
             {
-                a = lvi.Index;
+                niktoRequests niktoRequest = (niktoRequests)lvi.Tag;
+                String[] myitems = new String[2];
+                myitems[0] = "Description: ";
+                myitems[1] = niktoRequest.description;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
+                myitems[0] = "Request: ";
+                myitems[1] = niktoRequest.request;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
+                myitems[0] = "Trigger: ";
+                myitems[1] = niktoRequest.trigger;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
+                myitems[0] = "Method: ";
+                myitems[1] = niktoRequest.method;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
                 break;
-            }
-            NiktoKey[0] = lvw_NiktoDb.Items[a].SubItems[0].Text;
-            NiktoKey[1] = lvw_NiktoDb.Items[a].SubItems[1].Text;
-            //string niktoKey=lstboxNikto.SelectedItem.ToString();
-            //string[] niktoItems = new string[2];
-            //niktoItems = niktoKey.Split('\t');
-
-            for (a = 0; a < numberofNiktorequests; a++)
-            {
-                if ((niktoRequest[a].request.CompareTo(NiktoKey[1]) == 0) &&
-                    (niktoRequest[a].trigger.CompareTo(NiktoKey[0]) == 0))
-                {
-                    lvw_NiktoDesc.Items.Clear();
-                    String[] myitems = new String[2];
-                    myitems[0] = "Description: ";
-                    myitems[1] = niktoRequest[a].description;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                    myitems[0] = "Request: ";
-                    myitems[1] = niktoRequest[a].request;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                    myitems[0] = "Trigger: ";
-                    myitems[1] = niktoRequest[a].trigger;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                    myitems[0] = "Method: ";
-                    myitems[1] = niktoRequest[a].method;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                }
             }
         }
 
         private void populateNiktoDescvuln(object sender, System.EventArgs e)
         {
-            int a = 0;
+            lvw_NiktoDesc.Items.Clear();
             foreach (ListViewItem lvi in lvw_NiktoResults.SelectedItems)
             {
-                a = lvi.Index;
+                niktoRes nikto_result = (niktoRes)lvi.Tag;
+                txtNiktoReq.Text = nikto_result.rawrequest;
+                txtNiktoRes.Text = nikto_result.rawresult;
+                String[] myitems = new String[2];
+                myitems[0] = "Description: ";
+                myitems[1] = nikto_result.theNiktoRequest.description;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
+                myitems[0] = "Request: ";
+                myitems[1] = nikto_result.theNiktoRequest.request;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
+                myitems[0] = "Trigger: ";
+                myitems[1] = nikto_result.theNiktoRequest.trigger;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
+                myitems[0] = "Method: ";
+                myitems[1] = nikto_result.theNiktoRequest.method;
+                lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
+                if ((nikto_result.theNiktoRequest.trigger.Length != 3) || !IsNumeric(nikto_result.theNiktoRequest.trigger))
+                    if (txtNiktoRes.Text.IndexOf(nikto_result.theNiktoRequest.trigger) > -1)
+                    {
+                        txtNiktoRes.SelectionStart = txtNiktoRes.Text.IndexOf(nikto_result.theNiktoRequest.trigger);
+                        txtNiktoRes.SelectionLength = nikto_result.theNiktoRequest.trigger.Length;
+                    }
                 break;
-            }
-            string[] niktoItems = new string[3];
-            niktoItems[0] = lvw_NiktoResults.Items[a].SubItems[1].Text;
-            niktoItems[1] = lvw_NiktoResults.Items[a].SubItems[2].Text;
-            niktoItems[2] = lvw_NiktoResults.Items[a].SubItems[3].Text;
-
-            //find the corresponding result..
-            for (int b = 0; b < niktoResultCounter; b++)
-            {
-                if ((nikto_result[b].rawrequest.CompareTo(niktoItems[2]) == 0) &&
-                    (nikto_result[b].theNiktoRequest.trigger.CompareTo(niktoItems[1]) == 0))
-                {
-                    txtNiktoReq.Text = nikto_result[b].rawrequest;
-                    txtNiktoRes.Text = nikto_result[b].rawresult;
-                    lvw_NiktoDesc.Items.Clear();
-                    String[] myitems = new String[2];
-                    myitems[0] = "Description: ";
-                    myitems[1] = nikto_result[b].theNiktoRequest.description;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                    myitems[0] = "Request: ";
-                    myitems[1] = nikto_result[b].theNiktoRequest.request;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                    myitems[0] = "Trigger: ";
-                    myitems[1] = nikto_result[b].theNiktoRequest.trigger;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                    myitems[0] = "Method: ";
-                    myitems[1] = nikto_result[b].theNiktoRequest.method;
-                    lvw_NiktoDesc.Items.Add(new ListViewItem(myitems));
-                    if ((nikto_result[b].theNiktoRequest.trigger.Length != 3) && !IsNumeric(nikto_result[b].theNiktoRequest.trigger))
-                        if (txtNiktoRes.Text.IndexOf(nikto_result[b].theNiktoRequest.trigger) > -1)
-                        {
-                            txtNiktoRes.SelectionStart = txtNiktoRes.Text.IndexOf(nikto_result[b].theNiktoRequest.trigger);
-                            txtNiktoRes.SelectionLength = nikto_result[b].theNiktoRequest.trigger.Length;
-                        }
-                    break;
-                }
-
             }
         }
 
@@ -7733,9 +7653,9 @@ namespace SensePost.Wikto
             string actualrequest = "";
             if (chkProxyPresent.Checked)
             {
-                actualrequest = methodGETHEAD + " http://" + txtNiktoTarget.Text + niktoset.request + " HTTP/1.0\r\n";
+                actualrequest = methodGETHEAD + " http://" + txtNiktoTarget.Text + niktoset.request + HttpRequestLineSuffix;
             }
-            else actualrequest = methodGETHEAD + " " + niktoset.request + " HTTP/1.0\r\n";
+            else actualrequest = methodGETHEAD + " " + niktoset.request + HttpRequestLineSuffix;
 
             actualrequest += txtHeader.Text + "\r\n\r\n";
             return actualrequest;
@@ -7782,26 +7702,18 @@ namespace SensePost.Wikto
         private void btnNiktoFuzzUpdate_Click(object sender, System.EventArgs e)
         {
             lvw_NiktoResults.Items.Clear();
-            //lstBoxNiktoResults.Items.Clear();
             for (int a = 0; a <= niktoResultCounter; a++)
             {
                 if (nikto_result[a].fuzzValue <= Convert.ToDouble(NUPDOWNfuzz.Value) &&
                     nikto_result[a].fuzzValue > 0)
                 {
-                    //String[] NiktoItemToAdd = new String[3];
-                    //NiktoItemToAdd[0] = nikto_result[a].fuzzValue;
-                    //NiktoItemToAdd[1] = newNiktoRequest.trigger;
-                    //NiktoItemToAdd[2] = newNiktoRequest.request;
-
                     ListViewItem lvi = new ListViewItem(" ");
+                    lvi.Tag = nikto_result[a];
                     lvi.ImageIndex = 0;
-
                     lvi.SubItems.Add(nikto_result[a].fuzzValue.ToString());
                     lvi.SubItems.Add(nikto_result[a].theNiktoRequest.trigger.ToString());
                     lvi.SubItems.Add(nikto_result[a].theNiktoRequest.request.ToString());
-
-                    //this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, new ListViewItem(NiktoItemToAdd) });
-                    this.Invoke(this.dlgControlViewAdd, new Object[] { this.lvw_NiktoResults, lvi });
+                    Invoke(dlgControlViewAdd, new object[] { lvw_NiktoResults, lvi });
                 }
             }
 
@@ -8509,71 +8421,66 @@ namespace SensePost.Wikto
             isFirstTimeRun = false;
 
             StreamWriter writefile = new StreamWriter(filename);
-            ArrayList config = new ArrayList();
-            //now.....we have to add all them shit - this is a misssssion
 
             //From the config screen
-            config.Add("Config-ProxyDetails!" + txtProxySettings.Text);
-            config.Add("Config-ProxyEnable!" + chkProxyPresent.Checked.ToString());
-            config.Add("Config-GoogleDepth!" + updownGoogleDepth.Value.ToString());
-            config.Add("Config-RetryTCP!" + updownRetryTCP.Value.ToString());
-            config.Add("Config-TimeoutTCP!" + updownTimeOutTCP.Value.ToString());
-            config.Add("Config-DB-NiktoLocation!" + txtDBlocationNikto.Text);
-            config.Add("Config-DB-GHLocation!" + txtDBLocationGH.Text);
-            config.Add("Config-SPUDDirectory!" + txtSpudDirectory.Text);
-            config.Add("Config-UpdateSite!" + txtURLUpdate.Text);
-            config.Add("Config-ConfigFile!" + filename);
+            writefile.WriteLine("Config-ProxyDetails!" + txtProxySettings.Text);
+            writefile.WriteLine("Config-ProxyEnable!" + chkProxyPresent.Checked.ToString());
+            writefile.WriteLine("Config-GoogleDepth!" + updownGoogleDepth.Value.ToString());
+            writefile.WriteLine("Config-RetryTCP!" + updownRetryTCP.Value.ToString());
+            writefile.WriteLine("Config-TimeoutTCP!" + updownTimeOutTCP.Value.ToString());
+            writefile.WriteLine("Config-DB-NiktoLocation!" + txtDBlocationNikto.Text);
+            writefile.WriteLine("Config-DB-GHLocation!" + txtDBLocationGH.Text);
+            writefile.WriteLine("Config-SPUDDirectory!" + txtSpudDirectory.Text);
+            writefile.WriteLine("Config-UpdateSite!" + txtURLUpdate.Text);
+            writefile.WriteLine("Config-ConfigFile!" + filename);
 
             //from Googler
-            config.Add("Googler-Filetypes!" + txtWords.Text);
+            writefile.WriteLine("Googler-Filetypes!" + txtWords.Text);
 
             //from Backend......
-            config.Add("BackEnd-GET!" + radioGET.Checked.ToString());
-            config.Add("BackEnd-HEAD!" + radioHEAD.Checked.ToString());
-            config.Add("BackEnd-TriggerDir!" + txtErrorCodeDir.Text);
-            config.Add("BackEnd-TriggerFiles!" + txtErrorCodeFile.Text);
-            config.Add("BackEnd-UseAI!" + chkBackEndAI.Checked.ToString());
-            config.Add("BackEnd-AITriggerLevel!" + NUPDOWNBackEnd.Value.ToString());
-            config.Add("BackEnd-Preserve!" + chkPreserve.Checked.ToString());
+            writefile.WriteLine("BackEnd-GET!" + radioGET.Checked.ToString());
+            writefile.WriteLine("BackEnd-HEAD!" + radioHEAD.Checked.ToString());
+            writefile.WriteLine("BackEnd-TriggerDir!" + txtErrorCodeDir.Text);
+            writefile.WriteLine("BackEnd-TriggerFiles!" + txtErrorCodeFile.Text);
+            writefile.WriteLine("BackEnd-UseAI!" + chkBackEndAI.Checked.ToString());
+            writefile.WriteLine("BackEnd-AITriggerLevel!" + NUPDOWNBackEnd.Value.ToString());
+            writefile.WriteLine("BackEnd-Preserve!" + chkPreserve.Checked.ToString());
 
             //from Spider...
-            config.Add("Spider-Exclude!" + txt_ConfigSpiderExclude.Text.ToString());
-            config.Add("Spider-Extensions!" + txt_ConfigSpiderExtension.Text.ToString());
-            config.Add("Spider-Threads!" + NUPDOWNspider.Value.ToString());
+            writefile.WriteLine("Spider-Exclude!" + txt_ConfigSpiderExclude.Text.ToString());
+            writefile.WriteLine("Spider-Extensions!" + txt_ConfigSpiderExtension.Text.ToString());
+            writefile.WriteLine("Spider-Threads!" + NUPDOWNspider.Value.ToString());
 
             //From Wikto
-            config.Add("Wikto-Optimized!" + chkOptimizedNikto.Checked.ToString());
-            config.Add("Wikto-AITriggerLevel!" + NUPDOWNfuzz.Value.ToString());
+            writefile.WriteLine("Wikto-Optimized!" + chkOptimizedNikto.Checked.ToString());
+            writefile.WriteLine("Wikto-AITriggerLevel!" + NUPDOWNfuzz.Value.ToString());
 
             //write the backend files - dirs
-            string[] backenddirs = txtInDirs.Text.Replace("\r\n", "\n").Split('\n');
-            foreach (string item in backenddirs)
+            foreach (string item in txtInDirs.Text.Replace("\r\n", "\n").Split('\n'))
             {
-                config.Add("BackEnd-Directories!" + item);
+                writefile.WriteLine("BackEnd-Directories!" + item);
             }
 
             //write the backend files - files
-            string[] backendfiles = txtInFiles.Text.Replace("\r\n", "\n").Split('\n');
-            foreach (string item in backendfiles)
+            foreach (string item in txtInFiles.Text.Replace("\r\n", "\n").Split('\n'))
             {
-                config.Add("BackEnd-FileNames!" + item);
+                writefile.WriteLine("BackEnd-FileNames!" + item);
             }
 
             //write the backend files
-            string[] backendext = txtInFileTypes.Text.Replace("\r\n", "\n").Split('\n');
-            foreach (string item in backendext)
+            foreach (string item in txtInFileTypes.Text.Replace("\r\n", "\n").Split('\n'))
             {
-                config.Add("BackEnd-Extensions!" + item);
+                writefile.WriteLine("BackEnd-Extensions!" + item);
             }
 
-
-            foreach (string item in config)
+            //write the headers
+            foreach (string item in txtHeader.Text.Replace("\r\n", "\n").Split('\n'))
             {
-                writefile.WriteLine(item);
+                writefile.WriteLine("Http-Headers!" + item);
             }
+
             writefile.Close();
             setregistry(filename);
-
 
             lblConfigFileLocation.Text = filename;
         }
@@ -8685,17 +8592,16 @@ namespace SensePost.Wikto
             txtInDirs.Clear();
             txtInFiles.Clear();
             txtInFileTypes.Clear();
+            txtHeader.Clear();
 
             try
             {
-                string readline = "";
+                string readline;
                 while ((readline = freader.ReadLine()) != null)
                 {
-                    string[] namevalue = new string[2];
-                    namevalue = readline.Split('!');
+                    string[] namevalue = readline.Split(new char[] { '!' }, 2);
                     switch (namevalue[0])
                     {
-
                         case "Config-ProxyDetails":
                             txtProxySettings.Text = namevalue[1];
                             break;
@@ -8754,13 +8660,24 @@ namespace SensePost.Wikto
                             txtSpudDirectory.Text = namevalue[1];
                             break;
                         case "BackEnd-Directories":
-                            txtInDirs.AppendText(namevalue[1] + "\r\n");
+                            if (txtInDirs.TextLength != 0)
+                                txtInDirs.AppendText("\r\n");
+                            txtInDirs.AppendText(namevalue[1]);
                             break;
                         case "BackEnd-FileNames":
-                            txtInFiles.AppendText(namevalue[1] + "\r\n");
+                            if (txtInFiles.TextLength != 0)
+                                txtInFiles.AppendText("\r\n");
+                            txtInFiles.AppendText(namevalue[1]);
                             break;
                         case "BackEnd-Extensions":
-                            txtInFileTypes.AppendText(namevalue[1] + "\r\n");
+                            if (txtInFileTypes.TextLength != 0)
+                                txtInFileTypes.AppendText("\r\n");
+                            txtInFileTypes.AppendText(namevalue[1]);
+                            break;
+                        case "Http-Headers":
+                            if (txtHeader.TextLength != 0)
+                                txtHeader.AppendText("\r\n");
+                            txtHeader.AppendText(namevalue[1]);
                             break;
                         case "Spider-Exclude":
                             txt_ConfigSpiderExclude.Text = namevalue[1];
@@ -9136,14 +9053,14 @@ namespace SensePost.Wikto
             {
                 if (chkuseSSLWikto.Checked || chkBackEnduseSSLport.Checked)
                 {
-                    actualrequest = methodGETHEAD + " https://" + txtIPNumber.Text + myCombo + " HTTP/1.0\r\n";
+                    actualrequest = methodGETHEAD + " https://" + txtIPNumber.Text + myCombo + HttpRequestLineSuffix;
                 }
                 else
                 {
-                    actualrequest = methodGETHEAD + " http://" + txtIPNumber.Text + myCombo + " HTTP/1.0\r\n";
+                    actualrequest = methodGETHEAD + " http://" + txtIPNumber.Text + myCombo + HttpRequestLineSuffix;
                 }
             }
-            else actualrequest = methodGETHEAD + " " + myCombo + " HTTP/1.0\r\n";
+            else actualrequest = methodGETHEAD + " " + myCombo + HttpRequestLineSuffix;
 
             actualrequest += txtHeader.Text + "\r\n\r\n";
             return actualrequest;
@@ -9369,6 +9286,7 @@ namespace SensePost.Wikto
             FPtest.type = "FP test item";
             FPtest.trigger = "";
             FPtest.sensepostreq = "";
+            FPtest.headers = "";
 
             if (filetype.CompareTo("default") != 0)
             {
