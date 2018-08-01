@@ -8436,7 +8436,7 @@ namespace SensePost.Wikto
                             NUPDOWNfuzz.Value = Convert.ToDecimal(namevalue[1]);
                             break;
                         case "Wikto-TuningOptions":
-                            SetCheckedNiktoTuningOptions(Convert.ToUInt32(namevalue[1]));
+                            SetCheckedNiktoTuningOptions(Convert.ToUInt32(namevalue[1], 16));
                             break;
                         case "Config-SPUDDirectory":
                             txtSpudDirectory.Text = namevalue[1];
