@@ -128,7 +128,7 @@ namespace SensePost.Wikto
             public string fail1;
             public string fail2;
             public string method;
-            public string sensepostreq;
+            public string payload;
             public string headers;
         }
 
@@ -559,6 +559,8 @@ namespace SensePost.Wikto
         private TextBox txtSpudDirectory;
         private Button btnSpudLocate;
         private PictureBox pictureBox1;
+        private GroupBox groupBox2;
+        private CheckedListBox lst_NiktoTuningOptions;
 		private System.ComponentModel.IContainer components;
 		#endregion
 
@@ -883,6 +885,8 @@ namespace SensePost.Wikto
             this.pnl_WiktoTL3 = new System.Windows.Forms.Panel();
             this.lst_NiktoCGI = new System.Windows.Forms.ListBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lst_NiktoTuningOptions = new System.Windows.Forms.CheckedListBox();
             this.btnPauseWikto = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.prgNik = new System.Windows.Forms.ProgressBar();
@@ -1071,6 +1075,7 @@ namespace SensePost.Wikto
             this.pnl_WiktoTL1.SuspendLayout();
             this.pnl_WiktoTL3.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -1123,7 +1128,7 @@ namespace SensePost.Wikto
             // 
             this.btn_CfgLocateNDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CfgLocateNDb.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_CfgLocateNDb.Location = new System.Drawing.Point(663, 7);
+            this.btn_CfgLocateNDb.Location = new System.Drawing.Point(376, 7);
             this.btn_CfgLocateNDb.Name = "btn_CfgLocateNDb";
             this.btn_CfgLocateNDb.Size = new System.Drawing.Size(106, 22);
             this.btn_CfgLocateNDb.TabIndex = 10;
@@ -1136,7 +1141,7 @@ namespace SensePost.Wikto
             // 
             this.btn_CfgLocateGDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CfgLocateGDb.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_CfgLocateGDb.Location = new System.Drawing.Point(663, 31);
+            this.btn_CfgLocateGDb.Location = new System.Drawing.Point(376, 31);
             this.btn_CfgLocateGDb.Name = "btn_CfgLocateGDb";
             this.btn_CfgLocateGDb.Size = new System.Drawing.Size(106, 22);
             this.btn_CfgLocateGDb.TabIndex = 12;
@@ -1153,7 +1158,7 @@ namespace SensePost.Wikto
             this.txtDBLocationGH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDBLocationGH.Location = new System.Drawing.Point(149, 34);
             this.txtDBLocationGH.Name = "txtDBLocationGH";
-            this.txtDBLocationGH.Size = new System.Drawing.Size(430, 18);
+            this.txtDBLocationGH.Size = new System.Drawing.Size(143, 18);
             this.txtDBLocationGH.TabIndex = 11;
             this.txtDBLocationGH.Text = "databases\\GHDB.xml";
             this.txtDBLocationGH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1167,7 +1172,7 @@ namespace SensePost.Wikto
             this.txtDBlocationNikto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDBlocationNikto.Location = new System.Drawing.Point(149, 10);
             this.txtDBlocationNikto.Name = "txtDBlocationNikto";
-            this.txtDBlocationNikto.Size = new System.Drawing.Size(430, 18);
+            this.txtDBlocationNikto.Size = new System.Drawing.Size(143, 18);
             this.txtDBlocationNikto.TabIndex = 9;
             this.txtDBlocationNikto.Text = "databases\\nikto-scan_database.db";
             this.txtDBlocationNikto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1183,7 +1188,7 @@ namespace SensePost.Wikto
             this.txtHeader.Multiline = true;
             this.txtHeader.Name = "txtHeader";
             this.txtHeader.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtHeader.Size = new System.Drawing.Size(763, 676);
+            this.txtHeader.Size = new System.Drawing.Size(767, 680);
             this.txtHeader.TabIndex = 13;
             this.toolTip1.SetToolTip(this.txtHeader, "The HTTP Header to use during your scan");
             this.txtHeader.WordWrap = false;
@@ -1209,7 +1214,7 @@ namespace SensePost.Wikto
             this.txtProxySettings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProxySettings.Location = new System.Drawing.Point(134, 10);
             this.txtProxySettings.Name = "txtProxySettings";
-            this.txtProxySettings.Size = new System.Drawing.Size(508, 18);
+            this.txtProxySettings.Size = new System.Drawing.Size(512, 18);
             this.txtProxySettings.TabIndex = 27;
             this.txtProxySettings.Text = "ProxyIP/DNS:Port";
             this.txtProxySettings.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1253,7 +1258,7 @@ namespace SensePost.Wikto
             this.txt_ConfigSpiderExclude.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ConfigSpiderExclude.Location = new System.Drawing.Point(134, 10);
             this.txt_ConfigSpiderExclude.Name = "txt_ConfigSpiderExclude";
-            this.txt_ConfigSpiderExclude.Size = new System.Drawing.Size(508, 18);
+            this.txt_ConfigSpiderExclude.Size = new System.Drawing.Size(512, 18);
             this.txt_ConfigSpiderExclude.TabIndex = 147;
             this.txt_ConfigSpiderExclude.Text = "click.asp,mailto,javascript";
             this.txt_ConfigSpiderExclude.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1267,7 +1272,7 @@ namespace SensePost.Wikto
             this.txt_ConfigSpiderExtension.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ConfigSpiderExtension.Location = new System.Drawing.Point(134, 34);
             this.txt_ConfigSpiderExtension.Name = "txt_ConfigSpiderExtension";
-            this.txt_ConfigSpiderExtension.Size = new System.Drawing.Size(508, 18);
+            this.txt_ConfigSpiderExtension.Size = new System.Drawing.Size(512, 18);
             this.txt_ConfigSpiderExtension.TabIndex = 148;
             this.txt_ConfigSpiderExtension.Text = "xml,mso,swf,tgz,tar,xls,doc,ppt,msi,jpg,gif,png,css,js,ico,avi,wmv,mp3,rm,exe,zip" +
                 ",pdf,h,c,cpp,sh,bin,gz,bz2,mpg";
@@ -1334,7 +1339,7 @@ namespace SensePost.Wikto
             this.txtURLUpdateGHDB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtURLUpdateGHDB.Location = new System.Drawing.Point(134, 58);
             this.txtURLUpdateGHDB.Name = "txtURLUpdateGHDB";
-            this.txtURLUpdateGHDB.Size = new System.Drawing.Size(508, 18);
+            this.txtURLUpdateGHDB.Size = new System.Drawing.Size(512, 18);
             this.txtURLUpdateGHDB.TabIndex = 33;
             this.txtURLUpdateGHDB.Text = "http://johnny.ihackstuff.com/xml/ghdb.php";
             this.txtURLUpdateGHDB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1348,7 +1353,7 @@ namespace SensePost.Wikto
             this.txtURLUpdateNiktoDB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtURLUpdateNiktoDB.Location = new System.Drawing.Point(134, 34);
             this.txtURLUpdateNiktoDB.Name = "txtURLUpdateNiktoDB";
-            this.txtURLUpdateNiktoDB.Size = new System.Drawing.Size(508, 18);
+            this.txtURLUpdateNiktoDB.Size = new System.Drawing.Size(512, 18);
             this.txtURLUpdateNiktoDB.TabIndex = 32;
             this.txtURLUpdateNiktoDB.Text = "http://www.sensepost.com/research/wikto/DB/nikto.db";
             this.txtURLUpdateNiktoDB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1362,7 +1367,7 @@ namespace SensePost.Wikto
             this.txtURLUpdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtURLUpdate.Location = new System.Drawing.Point(134, 10);
             this.txtURLUpdate.Name = "txtURLUpdate";
-            this.txtURLUpdate.Size = new System.Drawing.Size(508, 18);
+            this.txtURLUpdate.Size = new System.Drawing.Size(512, 18);
             this.txtURLUpdate.TabIndex = 31;
             this.txtURLUpdate.Text = "http://www.sensepost.com/research/wikto/DB/BackEnd/";
             this.txtURLUpdate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1461,9 +1466,9 @@ namespace SensePost.Wikto
             // 
             this.btn_GHLoadDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
             this.btn_GHLoadDatabase.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_GHLoadDatabase.Location = new System.Drawing.Point(25, 143);
+            this.btn_GHLoadDatabase.Location = new System.Drawing.Point(7, 143);
             this.btn_GHLoadDatabase.Name = "btn_GHLoadDatabase";
-            this.btn_GHLoadDatabase.Size = new System.Drawing.Size(161, 24);
+            this.btn_GHLoadDatabase.Size = new System.Drawing.Size(208, 24);
             this.btn_GHLoadDatabase.TabIndex = 6;
             this.btn_GHLoadDatabase.Text = "Load Google Hack Database";
             this.toolTip1.SetToolTip(this.btn_GHLoadDatabase, "Load a Google Hack Database");
@@ -1566,7 +1571,7 @@ namespace SensePost.Wikto
             // 
             this.chkPreserve.AutoSize = true;
             this.chkPreserve.BackColor = System.Drawing.Color.Transparent;
-            this.chkPreserve.Location = new System.Drawing.Point(7, 135);
+            this.chkPreserve.Location = new System.Drawing.Point(7, 125);
             this.chkPreserve.Name = "chkPreserve";
             this.chkPreserve.Size = new System.Drawing.Size(96, 16);
             this.chkPreserve.TabIndex = 7;
@@ -1579,7 +1584,7 @@ namespace SensePost.Wikto
             this.btn_BESkiptoDirs.Enabled = false;
             this.btn_BESkiptoDirs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_BESkiptoDirs.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.btn_BESkiptoDirs.Location = new System.Drawing.Point(121, 155);
+            this.btn_BESkiptoDirs.Location = new System.Drawing.Point(121, 145);
             this.btn_BESkiptoDirs.Name = "btn_BESkiptoDirs";
             this.btn_BESkiptoDirs.Size = new System.Drawing.Size(86, 16);
             this.btn_BESkiptoDirs.TabIndex = 6;
@@ -1633,7 +1638,7 @@ namespace SensePost.Wikto
             this.btn_BESkiptoFiles.Enabled = false;
             this.btn_BESkiptoFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_BESkiptoFiles.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.btn_BESkiptoFiles.Location = new System.Drawing.Point(121, 135);
+            this.btn_BESkiptoFiles.Location = new System.Drawing.Point(121, 125);
             this.btn_BESkiptoFiles.Name = "btn_BESkiptoFiles";
             this.btn_BESkiptoFiles.Size = new System.Drawing.Size(86, 16);
             this.btn_BESkiptoFiles.TabIndex = 5;
@@ -1644,11 +1649,9 @@ namespace SensePost.Wikto
             // 
             // btn_BackEndExport
             // 
-            this.btn_BackEndExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_BackEndExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
             this.btn_BackEndExport.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btn_BackEndExport.Location = new System.Drawing.Point(3, 588);
+            this.btn_BackEndExport.Location = new System.Drawing.Point(7, 559);
             this.btn_BackEndExport.Name = "btn_BackEndExport";
             this.btn_BackEndExport.Size = new System.Drawing.Size(208, 24);
             this.btn_BackEndExport.TabIndex = 28;
@@ -1912,7 +1915,7 @@ namespace SensePost.Wikto
             // 
             this.btn_NiktoLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
             this.btn_NiktoLoad.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btn_NiktoLoad.Location = new System.Drawing.Point(7, 360);
+            this.btn_NiktoLoad.Location = new System.Drawing.Point(7, 559);
             this.btn_NiktoLoad.Name = "btn_NiktoLoad";
             this.btn_NiktoLoad.Size = new System.Drawing.Size(208, 24);
             this.btn_NiktoLoad.TabIndex = 18;
@@ -1925,7 +1928,7 @@ namespace SensePost.Wikto
             // 
             this.skinButtonGreen2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
             this.skinButtonGreen2.ForeColor = System.Drawing.Color.ForestGreen;
-            this.skinButtonGreen2.Location = new System.Drawing.Point(7, 330);
+            this.skinButtonGreen2.Location = new System.Drawing.Point(7, 535);
             this.skinButtonGreen2.Name = "skinButtonGreen2";
             this.skinButtonGreen2.Size = new System.Drawing.Size(208, 24);
             this.skinButtonGreen2.TabIndex = 17;
@@ -2420,7 +2423,7 @@ namespace SensePost.Wikto
             this.lstMirrorDirs.ItemHeight = 12;
             this.lstMirrorDirs.Location = new System.Drawing.Point(3, 33);
             this.lstMirrorDirs.Name = "lstMirrorDirs";
-            this.lstMirrorDirs.Size = new System.Drawing.Size(775, 314);
+            this.lstMirrorDirs.Size = new System.Drawing.Size(775, 320);
             this.lstMirrorDirs.TabIndex = 12;
             // 
             // tpnlMirrorDirTop
@@ -2527,9 +2530,9 @@ namespace SensePost.Wikto
             // 
             this.lblMirrorStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMirrorStatus.Location = new System.Drawing.Point(5, 674);
+            this.lblMirrorStatus.Location = new System.Drawing.Point(5, 678);
             this.lblMirrorStatus.Name = "lblMirrorStatus";
-            this.lblMirrorStatus.Size = new System.Drawing.Size(196, 13);
+            this.lblMirrorStatus.Size = new System.Drawing.Size(200, 13);
             this.lblMirrorStatus.TabIndex = 255;
             this.lblMirrorStatus.Text = "Not Running";
             this.lblMirrorStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2556,9 +2559,9 @@ namespace SensePost.Wikto
             this.prgHT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgHT.BackColor = System.Drawing.Color.DarkGray;
-            this.prgHT.Location = new System.Drawing.Point(7, 690);
+            this.prgHT.Location = new System.Drawing.Point(7, 695);
             this.prgHT.Name = "prgHT";
-            this.prgHT.Size = new System.Drawing.Size(194, 13);
+            this.prgHT.Size = new System.Drawing.Size(200, 13);
             this.prgHT.TabIndex = 255;
             // 
             // Googler
@@ -2567,9 +2570,9 @@ namespace SensePost.Wikto
             this.Googler.Controls.Add(this.tpnlGoogleMain);
             this.Googler.Controls.Add(this.pnlGoogleLeft);
             this.Googler.Controls.Add(this.lblQuery);
-            this.Googler.Location = new System.Drawing.Point(4, 25);
+            this.Googler.Location = new System.Drawing.Point(4, 24);
             this.Googler.Name = "Googler";
-            this.Googler.Size = new System.Drawing.Size(1005, 712);
+            this.Googler.Size = new System.Drawing.Size(1005, 713);
             this.Googler.TabIndex = 1;
             this.Googler.Text = "Googler";
             this.Googler.UseVisualStyleBackColor = true;
@@ -2590,7 +2593,7 @@ namespace SensePost.Wikto
             this.tpnlGoogleMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tpnlGoogleMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tpnlGoogleMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tpnlGoogleMain.Size = new System.Drawing.Size(781, 712);
+            this.tpnlGoogleMain.Size = new System.Drawing.Size(781, 713);
             this.tpnlGoogleMain.TabIndex = 148;
             // 
             // panel3
@@ -2604,14 +2607,14 @@ namespace SensePost.Wikto
             this.panel3.Location = new System.Drawing.Point(0, 632);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(781, 80);
+            this.panel3.Size = new System.Drawing.Size(781, 81);
             this.panel3.TabIndex = 18;
             // 
             // label57
             // 
             this.label57.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label57.Location = new System.Drawing.Point(3, 47);
+            this.label57.Location = new System.Drawing.Point(3, 48);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(775, 13);
             this.label57.TabIndex = 74;
@@ -2622,7 +2625,7 @@ namespace SensePost.Wikto
             // 
             this.label53.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label53.Location = new System.Drawing.Point(0, 11);
+            this.label53.Location = new System.Drawing.Point(0, 12);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(781, 12);
             this.label53.TabIndex = 72;
@@ -2635,7 +2638,7 @@ namespace SensePost.Wikto
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGoogleQuery.BackColor = System.Drawing.Color.Snow;
             this.txtGoogleQuery.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGoogleQuery.Location = new System.Drawing.Point(3, 26);
+            this.txtGoogleQuery.Location = new System.Drawing.Point(3, 27);
             this.txtGoogleQuery.Name = "txtGoogleQuery";
             this.txtGoogleQuery.ReadOnly = true;
             this.txtGoogleQuery.Size = new System.Drawing.Size(775, 18);
@@ -2648,7 +2651,7 @@ namespace SensePost.Wikto
             this.lblEstimate.BackColor = System.Drawing.Color.Snow;
             this.lblEstimate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblEstimate.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.lblEstimate.Location = new System.Drawing.Point(742, 64);
+            this.lblEstimate.Location = new System.Drawing.Point(742, 65);
             this.lblEstimate.Name = "lblEstimate";
             this.lblEstimate.Size = new System.Drawing.Size(36, 16);
             this.lblEstimate.TabIndex = 21;
@@ -2660,7 +2663,7 @@ namespace SensePost.Wikto
             this.lblPageNumber.BackColor = System.Drawing.Color.Snow;
             this.lblPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.lblPageNumber.Location = new System.Drawing.Point(3, 64);
+            this.lblPageNumber.Location = new System.Drawing.Point(3, 65);
             this.lblPageNumber.Name = "lblPageNumber";
             this.lblPageNumber.Size = new System.Drawing.Size(36, 16);
             this.lblPageNumber.TabIndex = 20;
@@ -2760,7 +2763,7 @@ namespace SensePost.Wikto
             this.lstGoogleDir.ItemHeight = 12;
             this.lstGoogleDir.Location = new System.Drawing.Point(0, 0);
             this.lstGoogleDir.Name = "lstGoogleDir";
-            this.lstGoogleDir.Size = new System.Drawing.Size(775, 278);
+            this.lstGoogleDir.Size = new System.Drawing.Size(775, 280);
             this.lstGoogleDir.TabIndex = 12;
             // 
             // tpnlGoogleLink
@@ -2859,7 +2862,7 @@ namespace SensePost.Wikto
             this.lstGoogleLink.Location = new System.Drawing.Point(0, 0);
             this.lstGoogleLink.Name = "lstGoogleLink";
             this.lstGoogleLink.ScrollAlwaysVisible = true;
-            this.lstGoogleLink.Size = new System.Drawing.Size(775, 278);
+            this.lstGoogleLink.Size = new System.Drawing.Size(775, 280);
             this.lstGoogleLink.TabIndex = 17;
             // 
             // pnlGoogleLeft
@@ -2884,14 +2887,14 @@ namespace SensePost.Wikto
             this.pnlGoogleLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlGoogleLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlGoogleLeft.Name = "pnlGoogleLeft";
-            this.pnlGoogleLeft.Size = new System.Drawing.Size(224, 712);
+            this.pnlGoogleLeft.Size = new System.Drawing.Size(224, 713);
             this.pnlGoogleLeft.TabIndex = 1;
             // 
             // lblGoogleStatus
             // 
             this.lblGoogleStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblGoogleStatus.Location = new System.Drawing.Point(5, 608);
+            this.lblGoogleStatus.Location = new System.Drawing.Point(5, 609);
             this.lblGoogleStatus.Name = "lblGoogleStatus";
             this.lblGoogleStatus.Size = new System.Drawing.Size(196, 60);
             this.lblGoogleStatus.TabIndex = 255;
@@ -2911,9 +2914,9 @@ namespace SensePost.Wikto
             // 
             this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label54.Location = new System.Drawing.Point(5, 670);
+            this.label54.Location = new System.Drawing.Point(7, 679);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(196, 13);
+            this.label54.Size = new System.Drawing.Size(200, 13);
             this.label54.TabIndex = 255;
             this.label54.Text = "Google Mining Progress:";
             this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2923,10 +2926,10 @@ namespace SensePost.Wikto
             this.prgGoogle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgGoogle.BackColor = System.Drawing.Color.DarkGray;
-            this.prgGoogle.Location = new System.Drawing.Point(7, 690);
+            this.prgGoogle.Location = new System.Drawing.Point(7, 695);
             this.prgGoogle.Maximum = 1000;
             this.prgGoogle.Name = "prgGoogle";
-            this.prgGoogle.Size = new System.Drawing.Size(194, 13);
+            this.prgGoogle.Size = new System.Drawing.Size(200, 13);
             this.prgGoogle.TabIndex = 255;
             // 
             // label55
@@ -2972,9 +2975,9 @@ namespace SensePost.Wikto
             this.BackEndMiner.BackColor = System.Drawing.Color.Silver;
             this.BackEndMiner.Controls.Add(this.pnl_BackEndMain);
             this.BackEndMiner.Controls.Add(this.panel4);
-            this.BackEndMiner.Location = new System.Drawing.Point(4, 25);
+            this.BackEndMiner.Location = new System.Drawing.Point(4, 24);
             this.BackEndMiner.Name = "BackEndMiner";
-            this.BackEndMiner.Size = new System.Drawing.Size(1005, 712);
+            this.BackEndMiner.Size = new System.Drawing.Size(1005, 713);
             this.BackEndMiner.TabIndex = 0;
             this.BackEndMiner.Text = "BackEnd";
             this.BackEndMiner.UseVisualStyleBackColor = true;
@@ -2987,7 +2990,7 @@ namespace SensePost.Wikto
             this.pnl_BackEndMain.Location = new System.Drawing.Point(224, 0);
             this.pnl_BackEndMain.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_BackEndMain.Name = "pnl_BackEndMain";
-            this.pnl_BackEndMain.Size = new System.Drawing.Size(781, 712);
+            this.pnl_BackEndMain.Size = new System.Drawing.Size(781, 713);
             this.pnl_BackEndMain.TabIndex = 250;
             // 
             // tpnl_BackendMain
@@ -3003,7 +3006,7 @@ namespace SensePost.Wikto
             this.tpnl_BackendMain.RowCount = 2;
             this.tpnl_BackendMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tpnl_BackendMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tpnl_BackendMain.Size = new System.Drawing.Size(781, 712);
+            this.tpnl_BackendMain.Size = new System.Drawing.Size(781, 713);
             this.tpnl_BackendMain.TabIndex = 0;
             // 
             // pnl_BackEndTop
@@ -3203,7 +3206,7 @@ namespace SensePost.Wikto
             this.pnl_BackEndBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_BackEndBottom.Location = new System.Drawing.Point(3, 359);
             this.pnl_BackEndBottom.Name = "pnl_BackEndBottom";
-            this.pnl_BackEndBottom.Size = new System.Drawing.Size(775, 350);
+            this.pnl_BackEndBottom.Size = new System.Drawing.Size(775, 351);
             this.pnl_BackEndBottom.TabIndex = 255;
             // 
             // tpnl_BEBottom1
@@ -3220,7 +3223,7 @@ namespace SensePost.Wikto
             this.tpnl_BEBottom1.Name = "tpnl_BEBottom1";
             this.tpnl_BEBottom1.RowCount = 1;
             this.tpnl_BEBottom1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tpnl_BEBottom1.Size = new System.Drawing.Size(775, 350);
+            this.tpnl_BEBottom1.Size = new System.Drawing.Size(775, 351);
             this.tpnl_BEBottom1.TabIndex = 0;
             // 
             // tpnl_BEBottom2
@@ -3237,7 +3240,7 @@ namespace SensePost.Wikto
             this.tpnl_BEBottom2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tpnl_BEBottom2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tpnl_BEBottom2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tpnl_BEBottom2.Size = new System.Drawing.Size(258, 350);
+            this.tpnl_BEBottom2.Size = new System.Drawing.Size(258, 351);
             this.tpnl_BEBottom2.TabIndex = 0;
             // 
             // pnl_BEBottomLeft1
@@ -3334,7 +3337,7 @@ namespace SensePost.Wikto
             this.tpnl_BEBottomRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tpnl_BEBottomRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tpnl_BEBottomRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tpnl_BEBottomRight.Size = new System.Drawing.Size(258, 350);
+            this.tpnl_BEBottomRight.Size = new System.Drawing.Size(258, 351);
             this.tpnl_BEBottomRight.TabIndex = 1;
             // 
             // pnl_BEBottomRight1
@@ -3420,7 +3423,7 @@ namespace SensePost.Wikto
             this.tpnl_BEFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tpnl_BEFiles.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tpnl_BEFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tpnl_BEFiles.Size = new System.Drawing.Size(259, 350);
+            this.tpnl_BEFiles.Size = new System.Drawing.Size(259, 351);
             this.tpnl_BEFiles.TabIndex = 2;
             // 
             // pnl_BEFile1
@@ -3519,14 +3522,14 @@ namespace SensePost.Wikto
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(224, 712);
+            this.panel4.Size = new System.Drawing.Size(224, 713);
             this.panel4.TabIndex = 1;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.nudTimeAnomaly);
             this.groupBox1.Controls.Add(this.chkTimeAnomalies);
-            this.groupBox1.Location = new System.Drawing.Point(7, 531);
+            this.groupBox1.Location = new System.Drawing.Point(7, 514);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox1.Size = new System.Drawing.Size(212, 38);
@@ -3584,7 +3587,7 @@ namespace SensePost.Wikto
             this.groupBox10.Controls.Add(this.chkBackEndAI);
             this.groupBox10.Controls.Add(this.NUPDOWNBackEnd);
             this.groupBox10.Controls.Add(this.panel2);
-            this.groupBox10.Location = new System.Drawing.Point(7, 356);
+            this.groupBox10.Location = new System.Drawing.Point(7, 339);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(212, 169);
             this.groupBox10.TabIndex = 18;
@@ -3655,9 +3658,9 @@ namespace SensePost.Wikto
             this.groupBox11.Controls.Add(this.cmbBackEndUpdate);
             this.groupBox11.Controls.Add(this.btn_BELoadExts);
             this.groupBox11.Controls.Add(this.btn_BELoadFiles);
-            this.groupBox11.Location = new System.Drawing.Point(7, 250);
+            this.groupBox11.Location = new System.Drawing.Point(7, 240);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(212, 100);
+            this.groupBox11.Size = new System.Drawing.Size(212, 92);
             this.groupBox11.TabIndex = 12;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Directory/File/Extension";
@@ -3669,7 +3672,7 @@ namespace SensePost.Wikto
             this.groupBox12.Controls.Add(this.txtIPPort);
             this.groupBox12.Controls.Add(this.chkBackEnduseSSLport);
             this.groupBox12.Controls.Add(this.txtIPNumber);
-            this.groupBox12.Location = new System.Drawing.Point(7, 172);
+            this.groupBox12.Location = new System.Drawing.Point(7, 162);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox12.Size = new System.Drawing.Size(212, 72);
@@ -3697,9 +3700,9 @@ namespace SensePost.Wikto
             // 
             this.label56.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label56.Location = new System.Drawing.Point(5, 646);
+            this.label56.Location = new System.Drawing.Point(7, 647);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(202, 13);
+            this.label56.Size = new System.Drawing.Size(200, 13);
             this.label56.TabIndex = 255;
             this.label56.Text = "Directory Progress:";
             this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3717,9 +3720,9 @@ namespace SensePost.Wikto
             // 
             this.label58.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label58.Location = new System.Drawing.Point(5, 678);
+            this.label58.Location = new System.Drawing.Point(7, 679);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(202, 13);
+            this.label58.Size = new System.Drawing.Size(200, 13);
             this.label58.TabIndex = 255;
             this.label58.Text = "File Progress:";
             this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3729,7 +3732,7 @@ namespace SensePost.Wikto
             this.prgsFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgsFiles.BackColor = System.Drawing.Color.DarkGray;
-            this.prgsFiles.Location = new System.Drawing.Point(7, 694);
+            this.prgsFiles.Location = new System.Drawing.Point(7, 695);
             this.prgsFiles.Maximum = 100000;
             this.prgsFiles.Name = "prgsFiles";
             this.prgsFiles.Size = new System.Drawing.Size(200, 13);
@@ -3741,7 +3744,7 @@ namespace SensePost.Wikto
             this.prgsDirs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgsDirs.BackColor = System.Drawing.Color.DarkGray;
-            this.prgsDirs.Location = new System.Drawing.Point(7, 662);
+            this.prgsDirs.Location = new System.Drawing.Point(7, 663);
             this.prgsDirs.Maximum = 10000;
             this.prgsDirs.Name = "prgsDirs";
             this.prgsDirs.Size = new System.Drawing.Size(200, 13);
@@ -3754,7 +3757,7 @@ namespace SensePost.Wikto
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStatus.BackColor = System.Drawing.Color.Snow;
             this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblStatus.Location = new System.Drawing.Point(7, 628);
+            this.lblStatus.Location = new System.Drawing.Point(7, 629);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(200, 14);
             this.lblStatus.TabIndex = 255;
@@ -3766,9 +3769,9 @@ namespace SensePost.Wikto
             this.NiktoIsh.BackColor = System.Drawing.Color.Silver;
             this.NiktoIsh.Controls.Add(this.pnl_WiktoMain);
             this.NiktoIsh.Controls.Add(this.panel5);
-            this.NiktoIsh.Location = new System.Drawing.Point(4, 25);
+            this.NiktoIsh.Location = new System.Drawing.Point(4, 24);
             this.NiktoIsh.Name = "NiktoIsh";
-            this.NiktoIsh.Size = new System.Drawing.Size(1005, 712);
+            this.NiktoIsh.Size = new System.Drawing.Size(1005, 713);
             this.NiktoIsh.TabIndex = 2;
             this.NiktoIsh.Text = "Wikto";
             this.NiktoIsh.UseVisualStyleBackColor = true;
@@ -3781,7 +3784,7 @@ namespace SensePost.Wikto
             this.pnl_WiktoMain.Location = new System.Drawing.Point(224, 0);
             this.pnl_WiktoMain.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_WiktoMain.Name = "pnl_WiktoMain";
-            this.pnl_WiktoMain.Size = new System.Drawing.Size(781, 712);
+            this.pnl_WiktoMain.Size = new System.Drawing.Size(781, 713);
             this.pnl_WiktoMain.TabIndex = 149;
             // 
             // tpnl_WiktoMain
@@ -3803,7 +3806,7 @@ namespace SensePost.Wikto
             this.tpnl_WiktoMain.RowCount = 2;
             this.tpnl_WiktoMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tpnl_WiktoMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tpnl_WiktoMain.Size = new System.Drawing.Size(781, 712);
+            this.tpnl_WiktoMain.Size = new System.Drawing.Size(781, 713);
             this.tpnl_WiktoMain.TabIndex = 0;
             // 
             // tpnl_WiktoB1
@@ -3820,7 +3823,7 @@ namespace SensePost.Wikto
             this.tpnl_WiktoB1.RowCount = 2;
             this.tpnl_WiktoB1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tpnl_WiktoB1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tpnl_WiktoB1.Size = new System.Drawing.Size(312, 356);
+            this.tpnl_WiktoB1.Size = new System.Drawing.Size(312, 357);
             this.tpnl_WiktoB1.TabIndex = 3;
             // 
             // panpnl_WiktoBL1
@@ -3904,7 +3907,7 @@ namespace SensePost.Wikto
             this.tpnl_WiktoB2.RowCount = 2;
             this.tpnl_WiktoB2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tpnl_WiktoB2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tpnl_WiktoB2.Size = new System.Drawing.Size(234, 356);
+            this.tpnl_WiktoB2.Size = new System.Drawing.Size(234, 357);
             this.tpnl_WiktoB2.TabIndex = 4;
             // 
             // panpnl_WiktoBM1
@@ -3959,7 +3962,7 @@ namespace SensePost.Wikto
             this.tpnl_WiktoB3.RowCount = 2;
             this.tpnl_WiktoB3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tpnl_WiktoB3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tpnl_WiktoB3.Size = new System.Drawing.Size(235, 356);
+            this.tpnl_WiktoB3.Size = new System.Drawing.Size(235, 357);
             this.tpnl_WiktoB3.TabIndex = 5;
             // 
             // panpnl_WiktoBR1
@@ -4228,7 +4231,7 @@ namespace SensePost.Wikto
             this.lst_NiktoCGI.ItemHeight = 12;
             this.lst_NiktoCGI.Location = new System.Drawing.Point(0, 0);
             this.lst_NiktoCGI.Name = "lst_NiktoCGI";
-            this.lst_NiktoCGI.Size = new System.Drawing.Size(306, 314);
+            this.lst_NiktoCGI.Size = new System.Drawing.Size(306, 320);
             this.lst_NiktoCGI.TabIndex = 26;
             // 
             // panel5
@@ -4237,6 +4240,7 @@ namespace SensePost.Wikto
             this.panel5.AutoScrollMinSize = new System.Drawing.Size(220, 670);
             this.panel5.BackColor = System.Drawing.Color.Silver;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Controls.Add(this.btnPauseWikto);
             this.panel5.Controls.Add(this.label2);
             this.panel5.Controls.Add(this.prgNik);
@@ -4254,8 +4258,45 @@ namespace SensePost.Wikto
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(224, 712);
+            this.panel5.Size = new System.Drawing.Size(224, 713);
             this.panel5.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lst_NiktoTuningOptions);
+            this.groupBox2.Location = new System.Drawing.Point(7, 292);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(212, 236);
+            this.groupBox2.TabIndex = 258;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Tuning options";
+            // 
+            // lst_NiktoTuningOptions
+            // 
+            this.lst_NiktoTuningOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lst_NiktoTuningOptions.CheckOnClick = true;
+            this.lst_NiktoTuningOptions.FormattingEnabled = true;
+            this.lst_NiktoTuningOptions.Items.AddRange(new object[] {
+            "0 - File Upload",
+            "1 - Interesting File / Seen in logs",
+            "2 - Misconfiguration / Default File",
+            "3 - Information Disclosure",
+            "4 - Injection (XSS/Script/HTML)",
+            "5 - Remote File Retrieval - Inside Web Root",
+            "6 - Denial of Service",
+            "7 - Remote File Retrieval - Server Wide",
+            "8 - Command Execution / Remote Shell",
+            "9 - SQL Injection",
+            "a - Authentication Bypass",
+            "b - Software Identification",
+            "c - Remote source inclusion",
+            "d - WebService",
+            "e - Administrative Console",
+            "f - User specific"});
+            this.lst_NiktoTuningOptions.Location = new System.Drawing.Point(6, 17);
+            this.lst_NiktoTuningOptions.Name = "lst_NiktoTuningOptions";
+            this.lst_NiktoTuningOptions.Size = new System.Drawing.Size(200, 210);
+            this.lst_NiktoTuningOptions.TabIndex = 0;
             // 
             // btnPauseWikto
             // 
@@ -4274,9 +4315,9 @@ namespace SensePost.Wikto
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(5, 642);
+            this.label2.Location = new System.Drawing.Point(7, 647);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 13);
+            this.label2.Size = new System.Drawing.Size(200, 13);
             this.label2.TabIndex = 255;
             this.label2.Text = "Wikto Progress:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4286,10 +4327,10 @@ namespace SensePost.Wikto
             this.prgNik.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgNik.BackColor = System.Drawing.Color.DarkGray;
-            this.prgNik.Location = new System.Drawing.Point(7, 658);
+            this.prgNik.Location = new System.Drawing.Point(7, 663);
             this.prgNik.Maximum = 1000;
             this.prgNik.Name = "prgNik";
-            this.prgNik.Size = new System.Drawing.Size(194, 13);
+            this.prgNik.Size = new System.Drawing.Size(200, 13);
             this.prgNik.TabIndex = 255;
             // 
             // prgNiktoWork
@@ -4297,10 +4338,10 @@ namespace SensePost.Wikto
             this.prgNiktoWork.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgNiktoWork.BackColor = System.Drawing.Color.DarkGray;
-            this.prgNiktoWork.Location = new System.Drawing.Point(7, 690);
+            this.prgNiktoWork.Location = new System.Drawing.Point(7, 695);
             this.prgNiktoWork.Maximum = 10;
             this.prgNiktoWork.Name = "prgNiktoWork";
-            this.prgNiktoWork.Size = new System.Drawing.Size(194, 13);
+            this.prgNiktoWork.Size = new System.Drawing.Size(200, 13);
             this.prgNiktoWork.TabIndex = 255;
             // 
             // lblNiktoAI
@@ -4310,9 +4351,9 @@ namespace SensePost.Wikto
             this.lblNiktoAI.BackColor = System.Drawing.Color.Snow;
             this.lblNiktoAI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblNiktoAI.Enabled = false;
-            this.lblNiktoAI.Location = new System.Drawing.Point(7, 622);
+            this.lblNiktoAI.Location = new System.Drawing.Point(7, 629);
             this.lblNiktoAI.Name = "lblNiktoAI";
-            this.lblNiktoAI.Size = new System.Drawing.Size(194, 20);
+            this.lblNiktoAI.Size = new System.Drawing.Size(200, 14);
             this.lblNiktoAI.TabIndex = 255;
             this.lblNiktoAI.Text = "Error messages";
             this.lblNiktoAI.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4325,9 +4366,9 @@ namespace SensePost.Wikto
             this.groupBox13.Controls.Add(this.chkOptimizedNikto);
             this.groupBox13.Controls.Add(this.btnNiktoFuzzUpdate);
             this.groupBox13.Controls.Add(this.NUPDOWNfuzz);
-            this.groupBox13.Location = new System.Drawing.Point(7, 214);
+            this.groupBox13.Location = new System.Drawing.Point(7, 198);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(208, 88);
+            this.groupBox13.Size = new System.Drawing.Size(212, 88);
             this.groupBox13.TabIndex = 9;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Trigger Control";
@@ -4339,9 +4380,9 @@ namespace SensePost.Wikto
             this.groupBox14.Controls.Add(this.txtNiktoTarget);
             this.groupBox14.Controls.Add(this.label28);
             this.groupBox14.Controls.Add(this.label29);
-            this.groupBox14.Location = new System.Drawing.Point(7, 138);
+            this.groupBox14.Location = new System.Drawing.Point(7, 122);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(208, 70);
+            this.groupBox14.Size = new System.Drawing.Size(212, 70);
             this.groupBox14.TabIndex = 5;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Target selection";
@@ -4375,9 +4416,9 @@ namespace SensePost.Wikto
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(7, 674);
+            this.label3.Location = new System.Drawing.Point(7, 679);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(194, 13);
+            this.label3.Size = new System.Drawing.Size(200, 13);
             this.label3.TabIndex = 255;
             this.label3.Text = "Work Progress:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4485,7 +4526,7 @@ namespace SensePost.Wikto
             this.lstGoogleHack.ItemHeight = 12;
             this.lstGoogleHack.Location = new System.Drawing.Point(0, 0);
             this.lstGoogleHack.Name = "lstGoogleHack";
-            this.lstGoogleHack.Size = new System.Drawing.Size(775, 218);
+            this.lstGoogleHack.Size = new System.Drawing.Size(775, 221);
             this.lstGoogleHack.TabIndex = 8;
             this.lstGoogleHack.MouseEnter += new System.EventHandler(this.GHkeepscrolling);
             this.lstGoogleHack.SelectedIndexChanged += new System.EventHandler(this.populateGoogleHackDesc);
@@ -4603,7 +4644,7 @@ namespace SensePost.Wikto
             this.lstGoogleHackResults.ItemHeight = 12;
             this.lstGoogleHackResults.Location = new System.Drawing.Point(0, 0);
             this.lstGoogleHackResults.Name = "lstGoogleHackResults";
-            this.lstGoogleHackResults.Size = new System.Drawing.Size(775, 182);
+            this.lstGoogleHackResults.Size = new System.Drawing.Size(775, 193);
             this.lstGoogleHackResults.TabIndex = 19;
             this.lstGoogleHackResults.SelectedIndexChanged += new System.EventHandler(this.populateGoogleHackDescFromResults);
             // 
@@ -4638,7 +4679,7 @@ namespace SensePost.Wikto
             this.lblGoogleHackEst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGoogleHackEst.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblGoogleHackEst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblGoogleHackEst.Location = new System.Drawing.Point(149, 626);
+            this.lblGoogleHackEst.Location = new System.Drawing.Point(155, 626);
             this.lblGoogleHackEst.Name = "lblGoogleHackEst";
             this.lblGoogleHackEst.Size = new System.Drawing.Size(52, 16);
             this.lblGoogleHackEst.TabIndex = 255;
@@ -4661,9 +4702,9 @@ namespace SensePost.Wikto
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(7, 642);
+            this.label1.Location = new System.Drawing.Point(7, 646);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(194, 13);
+            this.label1.Size = new System.Drawing.Size(200, 13);
             this.label1.TabIndex = 255;
             this.label1.Text = "Google Hack:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4676,7 +4717,7 @@ namespace SensePost.Wikto
             this.lblGoogleHackStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblGoogleHackStatus.Location = new System.Drawing.Point(7, 586);
             this.lblGoogleHackStatus.Name = "lblGoogleHackStatus";
-            this.lblGoogleHackStatus.Size = new System.Drawing.Size(194, 25);
+            this.lblGoogleHackStatus.Size = new System.Drawing.Size(200, 25);
             this.lblGoogleHackStatus.TabIndex = 255;
             this.lblGoogleHackStatus.Text = "Google Query Status";
             this.lblGoogleHackStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4686,10 +4727,10 @@ namespace SensePost.Wikto
             this.prgGHQuick.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgGHQuick.BackColor = System.Drawing.Color.DarkGray;
-            this.prgGHQuick.Location = new System.Drawing.Point(7, 690);
+            this.prgGHQuick.Location = new System.Drawing.Point(7, 694);
             this.prgGHQuick.Maximum = 10;
             this.prgGHQuick.Name = "prgGHQuick";
-            this.prgGHQuick.Size = new System.Drawing.Size(194, 13);
+            this.prgGHQuick.Size = new System.Drawing.Size(200, 13);
             this.prgGHQuick.TabIndex = 255;
             // 
             // prgsGoogleHackAll
@@ -4697,9 +4738,9 @@ namespace SensePost.Wikto
             this.prgsGoogleHackAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.prgsGoogleHackAll.BackColor = System.Drawing.Color.DarkGray;
-            this.prgsGoogleHackAll.Location = new System.Drawing.Point(7, 658);
+            this.prgsGoogleHackAll.Location = new System.Drawing.Point(7, 662);
             this.prgsGoogleHackAll.Name = "prgsGoogleHackAll";
-            this.prgsGoogleHackAll.Size = new System.Drawing.Size(194, 13);
+            this.prgsGoogleHackAll.Size = new System.Drawing.Size(200, 13);
             this.prgsGoogleHackAll.TabIndex = 255;
             // 
             // pictureBox7
@@ -4715,9 +4756,9 @@ namespace SensePost.Wikto
             // 
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.Location = new System.Drawing.Point(7, 674);
+            this.label21.Location = new System.Drawing.Point(7, 678);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(194, 13);
+            this.label21.Size = new System.Drawing.Size(200, 13);
             this.label21.TabIndex = 255;
             this.label21.Text = "Google Hack Quick:";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4733,7 +4774,6 @@ namespace SensePost.Wikto
             // pnl_configleft
             // 
             this.pnl_configleft.BackColor = System.Drawing.Color.Silver;
-            this.pnl_configleft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnl_configleft.Controls.Add(this.pnl_ConfigMain);
             this.pnl_configleft.Controls.Add(this.panel1);
             this.pnl_configleft.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -4750,7 +4790,7 @@ namespace SensePost.Wikto
             this.pnl_ConfigMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_ConfigMain.Location = new System.Drawing.Point(224, 0);
             this.pnl_ConfigMain.Name = "pnl_ConfigMain";
-            this.pnl_ConfigMain.Size = new System.Drawing.Size(777, 708);
+            this.pnl_ConfigMain.Size = new System.Drawing.Size(781, 712);
             this.pnl_ConfigMain.TabIndex = 252;
             // 
             // tab_configMain
@@ -4768,7 +4808,7 @@ namespace SensePost.Wikto
             this.tab_configMain.Location = new System.Drawing.Point(0, 0);
             this.tab_configMain.Name = "tab_configMain";
             this.tab_configMain.SelectedIndex = 0;
-            this.tab_configMain.Size = new System.Drawing.Size(777, 708);
+            this.tab_configMain.Size = new System.Drawing.Size(781, 712);
             this.tab_configMain.TabIndex = 8;
             // 
             // cfg_DB
@@ -4785,7 +4825,7 @@ namespace SensePost.Wikto
             this.cfg_DB.Location = new System.Drawing.Point(4, 21);
             this.cfg_DB.Name = "cfg_DB";
             this.cfg_DB.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_DB.Size = new System.Drawing.Size(769, 683);
+            this.cfg_DB.Size = new System.Drawing.Size(773, 687);
             this.cfg_DB.TabIndex = 4;
             this.cfg_DB.Text = "Database Locations";
             this.cfg_DB.UseVisualStyleBackColor = true;
@@ -4793,7 +4833,7 @@ namespace SensePost.Wikto
             // btn_browseghdb
             // 
             this.btn_browseghdb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_browseghdb.Location = new System.Drawing.Point(597, 31);
+            this.btn_browseghdb.Location = new System.Drawing.Point(310, 31);
             this.btn_browseghdb.Name = "btn_browseghdb";
             this.btn_browseghdb.Size = new System.Drawing.Size(60, 22);
             this.btn_browseghdb.TabIndex = 14;
@@ -4804,7 +4844,7 @@ namespace SensePost.Wikto
             // btn_browsenikto
             // 
             this.btn_browsenikto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_browsenikto.Location = new System.Drawing.Point(597, 7);
+            this.btn_browsenikto.Location = new System.Drawing.Point(310, 7);
             this.btn_browsenikto.Name = "btn_browsenikto";
             this.btn_browsenikto.Size = new System.Drawing.Size(60, 22);
             this.btn_browsenikto.TabIndex = 13;
@@ -4835,7 +4875,7 @@ namespace SensePost.Wikto
             this.cfg_Header.Location = new System.Drawing.Point(4, 22);
             this.cfg_Header.Name = "cfg_Header";
             this.cfg_Header.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_Header.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Header.Size = new System.Drawing.Size(773, 686);
             this.cfg_Header.TabIndex = 5;
             this.cfg_Header.Text = "HTTP Header";
             this.cfg_Header.UseVisualStyleBackColor = true;
@@ -4852,7 +4892,7 @@ namespace SensePost.Wikto
             this.cfg_Google.Location = new System.Drawing.Point(4, 22);
             this.cfg_Google.Name = "cfg_Google";
             this.cfg_Google.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_Google.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Google.Size = new System.Drawing.Size(773, 686);
             this.cfg_Google.TabIndex = 1;
             this.cfg_Google.Text = "Spud API";
             this.cfg_Google.UseVisualStyleBackColor = true;
@@ -4930,7 +4970,7 @@ namespace SensePost.Wikto
             this.cfg_Proxy.Location = new System.Drawing.Point(4, 22);
             this.cfg_Proxy.Name = "cfg_Proxy";
             this.cfg_Proxy.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_Proxy.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Proxy.Size = new System.Drawing.Size(773, 686);
             this.cfg_Proxy.TabIndex = 0;
             this.cfg_Proxy.Text = "Proxy Settings";
             this.cfg_Proxy.UseVisualStyleBackColor = true;
@@ -4965,7 +5005,7 @@ namespace SensePost.Wikto
             this.cfg_Spider.Location = new System.Drawing.Point(4, 22);
             this.cfg_Spider.Name = "cfg_Spider";
             this.cfg_Spider.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_Spider.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Spider.Size = new System.Drawing.Size(773, 686);
             this.cfg_Spider.TabIndex = 9;
             this.cfg_Spider.Text = "Spider";
             this.cfg_Spider.UseVisualStyleBackColor = true;
@@ -4993,7 +5033,7 @@ namespace SensePost.Wikto
             this.txt_idxflags.Enabled = false;
             this.txt_idxflags.Location = new System.Drawing.Point(134, 130);
             this.txt_idxflags.Name = "txt_idxflags";
-            this.txt_idxflags.Size = new System.Drawing.Size(508, 18);
+            this.txt_idxflags.Size = new System.Drawing.Size(512, 18);
             this.txt_idxflags.TabIndex = 161;
             this.txt_idxflags.Text = "?C=N;O=A,?C=N;O=D,?C=M;O=A,?C=M;O=D,?C=S;O=A,?C=S;O=D,?C=D;O=A,?C=D;O=D";
             this.txt_idxflags.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -5015,7 +5055,7 @@ namespace SensePost.Wikto
             this.txt_excdirs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_excdirs.Location = new System.Drawing.Point(134, 81);
             this.txt_excdirs.Name = "txt_excdirs";
-            this.txt_excdirs.Size = new System.Drawing.Size(508, 18);
+            this.txt_excdirs.Size = new System.Drawing.Size(512, 18);
             this.txt_excdirs.TabIndex = 159;
             this.txt_excdirs.Text = "/images/,/js/,/img/";
             this.txt_excdirs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -5074,7 +5114,7 @@ namespace SensePost.Wikto
             this.txt_content.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_content.Location = new System.Drawing.Point(134, 58);
             this.txt_content.Name = "txt_content";
-            this.txt_content.Size = new System.Drawing.Size(508, 18);
+            this.txt_content.Size = new System.Drawing.Size(512, 18);
             this.txt_content.TabIndex = 154;
             this.txt_content.Text = "text/*";
             this.txt_content.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -5127,7 +5167,7 @@ namespace SensePost.Wikto
             this.cfg_Timing.Location = new System.Drawing.Point(4, 22);
             this.cfg_Timing.Name = "cfg_Timing";
             this.cfg_Timing.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_Timing.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Timing.Size = new System.Drawing.Size(773, 686);
             this.cfg_Timing.TabIndex = 2;
             this.cfg_Timing.Text = "Timing";
             this.cfg_Timing.UseVisualStyleBackColor = true;
@@ -5160,7 +5200,7 @@ namespace SensePost.Wikto
             this.cfg_Update.Location = new System.Drawing.Point(4, 22);
             this.cfg_Update.Name = "cfg_Update";
             this.cfg_Update.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_Update.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Update.Size = new System.Drawing.Size(773, 686);
             this.cfg_Update.TabIndex = 6;
             this.cfg_Update.Text = "Update Sites";
             this.cfg_Update.UseVisualStyleBackColor = true;
@@ -5197,7 +5237,7 @@ namespace SensePost.Wikto
             this.cfg_Startup.Controls.Add(this.chk_ShowStart);
             this.cfg_Startup.Location = new System.Drawing.Point(4, 22);
             this.cfg_Startup.Name = "cfg_Startup";
-            this.cfg_Startup.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Startup.Size = new System.Drawing.Size(773, 686);
             this.cfg_Startup.TabIndex = 10;
             this.cfg_Startup.Text = "Wikto Start Up";
             // 
@@ -5225,7 +5265,7 @@ namespace SensePost.Wikto
             this.cfg_Help.Location = new System.Drawing.Point(4, 22);
             this.cfg_Help.Name = "cfg_Help";
             this.cfg_Help.Padding = new System.Windows.Forms.Padding(3);
-            this.cfg_Help.Size = new System.Drawing.Size(769, 682);
+            this.cfg_Help.Size = new System.Drawing.Size(773, 686);
             this.cfg_Help.TabIndex = 8;
             this.cfg_Help.Text = "Help";
             this.cfg_Help.UseVisualStyleBackColor = true;
@@ -5305,16 +5345,16 @@ namespace SensePost.Wikto
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(224, 708);
+            this.panel1.Size = new System.Drawing.Size(224, 712);
             this.panel1.TabIndex = 1;
             // 
             // label37
             // 
             this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label37.Location = new System.Drawing.Point(5, 643);
+            this.label37.Location = new System.Drawing.Point(5, 645);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(198, 13);
+            this.label37.Size = new System.Drawing.Size(200, 13);
             this.label37.TabIndex = 255;
             this.label37.Text = "Currently Running:";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5325,9 +5365,9 @@ namespace SensePost.Wikto
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lblConfigFileLocation.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblConfigFileLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblConfigFileLocation.Location = new System.Drawing.Point(3, 656);
+            this.lblConfigFileLocation.Location = new System.Drawing.Point(3, 658);
             this.lblConfigFileLocation.Name = "lblConfigFileLocation";
-            this.lblConfigFileLocation.Size = new System.Drawing.Size(200, 47);
+            this.lblConfigFileLocation.Size = new System.Drawing.Size(202, 47);
             this.lblConfigFileLocation.TabIndex = 255;
             this.lblConfigFileLocation.Text = "Running on defaults";
             this.lblConfigFileLocation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5509,6 +5549,7 @@ namespace SensePost.Wikto
             this.pnl_WiktoTL1.ResumeLayout(false);
             this.pnl_WiktoTL3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox14.ResumeLayout(false);
@@ -5575,6 +5616,11 @@ namespace SensePost.Wikto
         {
             txtHeader.Text = "Accept: */*\r\nAccept-Language: en-us\r\nConnection: close\r\nUser-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)\r\nHost: localhost";
             btnStopGoole.Enabled = false;
+            lst_NiktoTuningOptions.ContextMenu = new ContextMenu(new MenuItem[] {
+                new MenuItem("Check All", new EventHandler((object a, EventArgs b) => { SetCheckedNiktoTuningOptions(~0U); })),
+                new MenuItem("Uncheck All", new EventHandler((object a, EventArgs b) => { SetCheckedNiktoTuningOptions(0U); })),
+            });
+            SetCheckedNiktoTuningOptions(~0U);
             LoadConfigInitial();
             if (bl_ShowStart)
             {
@@ -6882,135 +6928,6 @@ namespace SensePost.Wikto
             this.BeginInvoke(miNikto);
         }
 
-        private String GetDummyReq(String niktoreq)
-        {
-            string originalReq = niktoreq;
-
-            bool StartsWithSlash = false;
-            bool EndsWithSlash = false;
-            // Here's how we get this...
-            // 1 - If the url starts or ends with "/", we remove them...
-            if (niktoreq == "/")
-            {
-                StartsWithSlash = true;
-                niktoreq = "";
-                EndsWithSlash = true;
-            }
-            else if (niktoreq.StartsWith("/?"))
-            {
-                StartsWithSlash = true;
-                EndsWithSlash = true;
-            }
-            else
-            {
-                if (niktoreq.StartsWith("/"))
-                {
-                    niktoreq = niktoreq.Substring(1, niktoreq.Length - 1);
-                    StartsWithSlash = true;
-                }
-                if (niktoreq.EndsWith("/"))
-                {
-                    niktoreq = niktoreq.Substring(0, niktoreq.Length - 1);
-                    EndsWithSlash = true;
-                }
-            }
-            // 2 - If the url contains more than one ?, we're going to replace those at the end with SENSEPOSTPLACEHOLDER
-            int q1 = 0;
-            q1 = niktoreq.IndexOf("?");
-            if (q1 > -1)
-            {
-                String[] tmp = niktoreq.Split('?');
-                //String[] tmp = niktoreq.Split("?");
-                niktoreq = "";
-                bool FoundFirst = false;
-                int idx = 0;
-                foreach (String tmp2 in tmp)
-                {
-                    if (niktoreq == "" && idx == 0)
-                    {
-                        niktoreq = tmp2;
-                    }
-                    else
-                    {
-                        if (!FoundFirst)
-                        {
-                            niktoreq += ("?" + tmp2);
-                            FoundFirst = true;
-                        }
-                        else { niktoreq += ("SENSEPOSTPLACEHOLDER" + tmp2); }
-                    }
-                    idx++;
-                }
-            }
-            // 3 - Now, we split the request into URL, QUERYSTRING at the ?
-            String[] url_qur = niktoreq.Split('?');
-            // 4 - We now split the URL section at the directory delimiters...
-            String[] dir_url = url_qur[0].Split('/');
-            // 5 - And our last directory section will be the path we're interested in...
-            String LastSect = dir_url[dir_url.Length - 1];
-            // 6 - Now, we want out request to start and end the same as the original request.
-            // So we concatenate the first three chars of the original, and the last 4 of the original onto our string...
-            // But we first have to ensure that the string is long enough...
-            String MyReq = "";
-            if (LastSect.Length >= 4)
-                MyReq = LastSect.Substring(0, 3) + "SensePostNotThereNoNo" + LastSect.Substring(LastSect.Length - 4, 4);
-            else
-                MyReq = LastSect + "SensePostNotThereNoNo" + LastSect;
-            // 7 - Now, we reassamble the directory structure...
-            String Dirs = "";
-            int i = 0;
-            for (i = 0; i < dir_url.Length - 1; i++)
-            {
-                if (Dirs == "") Dirs = dir_url[i];
-                else Dirs = Dirs + "/" + dir_url[i];
-            }
-            Dirs = Dirs + "/" + MyReq;
-            if (StartsWithSlash) Dirs = "/" + Dirs;
-            if (EndsWithSlash) Dirs = Dirs + "/";
-            // 8 - And readd the query string if neccessary
-            if (url_qur.Length > 1) Dirs = Dirs + "?" + url_qur[1];
-            // 9 - And replace all SENSEPOSTPLACEHOLDERS with ?
-            Dirs = Dirs.Replace("SENSEPOSTPLACEHOLDER", "?");
-            // 10 - And a slash at start / end if there was one originally...
-            // And now we have our dummy request...
-
-            //indicate requests that *might* be FP's
-            string[] checkfordoubles = new string[] { "?", "%20", "." };
-            string[] checkforsingles = new string[] {};
-            WeirdDummy = false;
-
-            //check for multiple occurances of string
-            for (int k = 0; k < checkfordoubles.Length; k++)
-            {
-                if (originalReq.IndexOf(checkfordoubles[k]) > -1)   //string is in request
-                {
-                    if (originalReq.LastIndexOf(checkfordoubles[k]) != originalReq.IndexOf(checkfordoubles[k])) //there is another string in the request
-                    {
-                        WeirdDummy = true;
-                        break;
-                    }
-                }
-            }
-
-            //check for a single accurance of string
-            for (int k = 0; k < checkforsingles.Length; k++)
-            {
-                if (originalReq.IndexOf(checkforsingles[k]) > -1)
-                {
-                    WeirdDummy = true;
-                    break;
-                }
-            }
-
-            Regex RgxUrl = new Regex("(([a-zA-Z][0-9a-zA-Z+\\-\\.]*:)?/{0,2}[0-9a-zA-Z;/?:@&=+$\\.\\-_!~*'()%]+)?(#[0-9a-zA-Z;/?:@&=+$\\.\\-_!~*'()%]+)?");
-            if(!RgxUrl.IsMatch(txtNiktoTarget.Text + Dirs))
-            {
-                WeirdDummy = true;
-            }
-
-            return Dirs;
-        }
-
         private bool IsContent(string s)
         {
             return !Regex.IsMatch(s, "^[0-9]{3}$");
@@ -7074,17 +6991,23 @@ namespace SensePost.Wikto
 
         private String GetNiktoRequest(niktoRequests request)
         {
-            String returner = request.method;
-            returner += chkProxyPresent.Checked ? " http://" + txtNiktoTarget.Text : " ";
-            returner += request.request;
-            returner += HttpRequestLineSuffix;
-            if (request.headers != null)
-                returner += request.headers;
-            returner += txtHeader.Text;
-            returner += "\r\n\r\n";
-            if (request.sensepostreq != null)
-                returner += request.sensepostreq;
-            return returner;
+            var returner = new StringBuilder();
+            returner.Append(request.method);
+            returner.Append(chkProxyPresent.Checked ? " http://" + txtNiktoTarget.Text : " ");
+            returner.Append(request.request);
+            returner.Append(HttpRequestLineSuffix);
+            returner.Append(request.headers);
+            returner.Append(txtHeader.Text);
+            if (!string.IsNullOrEmpty(request.payload) && (request.headers == null || !Regex.IsMatch(
+                request.headers, "^Transfer-Encoding:", RegexOptions.IgnoreCase | RegexOptions.Multiline)))
+            {
+                // TODO: Why doesn't this seem to work for me?
+                returner.Append("\r\nContent-Length: ");
+                returner.Append(request.payload.Length);
+            }
+            returner.Append("\r\n\r\n");
+            returner.Append(request.payload);
+            return returner.ToString();
         }
 
         private string GetNiktoResponse(string whatdoisend)
@@ -7214,11 +7137,37 @@ namespace SensePost.Wikto
                         }
                         niktoResultCounter++;
                     }
+                    Invoke(dlgControlProgVal, new object[] { prgNiktoWork, 10 });
+                    Invoke(dlgControlProgInc, new object[] { prgNik, prgNik.Maximum / numberofNiktorequests });
                 }
-                Invoke(dlgControlProgVal, new object[] { prgNiktoWork, 10 });
-                Invoke(dlgControlProgInc, new object[] { prgNik, prgNik.Maximum / numberofNiktorequests });
             }
             Invoke(dlgControlDisable, new object[] { btnPauseWikto, false });
+        }
+
+        private uint GetCheckedNiktoTuningOptions()
+        {
+            uint mask = 0;
+            int count = lst_NiktoTuningOptions.Items.Count;
+            for (int index = 0; index < count; ++index)
+                if (lst_NiktoTuningOptions.GetItemChecked(index))
+                    mask |= 1U << index;
+            return mask;
+        }
+
+        private void SetCheckedNiktoTuningOptions(uint mask)
+        {
+            int count = lst_NiktoTuningOptions.Items.Count;
+            for (int index = 0; index < count; ++index)
+                lst_NiktoTuningOptions.SetItemChecked(index, (mask & 1U << index) != 0);
+        }
+
+        private uint ParseNiktoTuningOptions(string s)
+        {
+            uint mask = 0;
+            int count = s.Length;
+            for (int index = 0; index < count; ++index)
+                mask |= 1U << Convert.ToInt32(s.Substring(index, 1), 16);
+            return mask;
         }
 
         private void LoadDatabase(string filename)
@@ -7229,6 +7178,7 @@ namespace SensePost.Wikto
                 string readline;
                 int number = 0;
                 lvw_NiktoDb.Items.Clear();
+                uint tuningOptions = GetCheckedNiktoTuningOptions();
                 while ((readline = fileRead.ReadLine()) != null)
                 {
                     int n = readline.Length;
@@ -7284,24 +7234,27 @@ namespace SensePost.Wikto
                             splititems[j] += c;
                         }
                     }
-                    niktoRequest[number].type = splititems[0];
-                    niktoRequest[number].request = splititems[3];
-                    niktoRequest[number].method = splititems[4];
-                    niktoRequest[number].match1 = splititems[5];
-                    niktoRequest[number].match1_or = splititems[6];
-                    niktoRequest[number].match1_and = splititems[7];
-                    niktoRequest[number].fail1 = splititems[8];
-                    niktoRequest[number].fail2 = splititems[9];
-                    niktoRequest[number].description = splititems[10];
-                    niktoRequest[number].sensepostreq = splititems[11];
-                    niktoRequest[number].headers = splititems[12];
-                    string[] MyTest = new string[2];
-                    MyTest[0] = niktoRequest[number].match1;
-                    MyTest[1] = niktoRequest[number].request;
-                    ListViewItem lvi = new ListViewItem(MyTest);
-                    lvi.Tag = niktoRequest[number];
-                    lvw_NiktoDb.Items.Add(lvi);
-                    number++;
+                    if ((ParseNiktoTuningOptions(splititems[2]) & tuningOptions) != 0)
+                    {
+                        niktoRequest[number].type = splititems[0];
+                        niktoRequest[number].request = splititems[3];
+                        niktoRequest[number].method = splititems[4];
+                        niktoRequest[number].match1 = splititems[5];
+                        niktoRequest[number].match1_or = splititems[6];
+                        niktoRequest[number].match1_and = splititems[7];
+                        niktoRequest[number].fail1 = splititems[8];
+                        niktoRequest[number].fail2 = splititems[9];
+                        niktoRequest[number].description = splititems[10];
+                        niktoRequest[number].payload = splititems[11];
+                        niktoRequest[number].headers = splititems[12];
+                        string[] MyTest = new string[2];
+                        MyTest[0] = niktoRequest[number].match1;
+                        MyTest[1] = niktoRequest[number].request;
+                        ListViewItem lvi = new ListViewItem(MyTest);
+                        lvi.Tag = niktoRequest[number];
+                        lvw_NiktoDb.Items.Add(lvi);
+                        number++;
+                    }
                 }
                 numberofNiktorequests = number;
                 fileRead.Close();
@@ -8279,6 +8232,7 @@ namespace SensePost.Wikto
             //From Wikto
             writefile.WriteLine("Wikto-Optimized!" + chkOptimizedNikto.Checked.ToString());
             writefile.WriteLine("Wikto-AITriggerLevel!" + NUPDOWNfuzz.Value.ToString());
+            writefile.WriteLine("Wikto-TuningOptions!" + GetCheckedNiktoTuningOptions().ToString("X"));
 
             //write the backend files - dirs
             foreach (string item in txtInDirs.Text.Replace("\r\n", "\n").Split('\n'))
@@ -8480,6 +8434,9 @@ namespace SensePost.Wikto
                             break;
                         case "Wikto-AITriggerLevel":
                             NUPDOWNfuzz.Value = Convert.ToDecimal(namevalue[1]);
+                            break;
+                        case "Wikto-TuningOptions":
+                            SetCheckedNiktoTuningOptions(Convert.ToUInt32(namevalue[1]));
                             break;
                         case "Config-SPUDDirectory":
                             txtSpudDirectory.Text = namevalue[1];
@@ -8890,95 +8847,6 @@ namespace SensePost.Wikto
             actualrequest += txtHeader.Text + "\r\n\r\n";
             return actualrequest;
         }
-
-        /*public bool testRequest(string ipRaw, string portRaw, string requestRaw, string errorCodes, int TimeOut, bool fileordir)
-        {
-
-            if (chkProxyPresent.Checked)
-            {
-                string[] proxyItems = new string[2];
-                proxyItems = txtProxySettings.Text.Split(':');
-                ipRaw = proxyItems[0];
-                portRaw = proxyItems[1];
-            }
-            string response = "";
-            response = sendraw(ipRaw, portRaw, requestRaw, 1024, TimeOut, chkBackEnduseSSLport.Checked);
-
-            //lets check indexability first
-            if (response.IndexOf("ndex of") >= 0 || response.IndexOf("To Parent Directory") >= 0)
-            {
-                isitIndexable = true;
-            }
-            else
-            {
-                isitIndexable = false;
-            }
-
-            if (chkBackEndAI.Checked == true)
-            {
-
-                //AI stuff
-                string[] parts = new string[2000];
-                parts = requestRaw.Split(' ');
-                double result;
-                niktoRequests niktoset;
-
-                //true=file false=dir
-                if (fileordir == false)
-                {
-                    niktoset.description = "FPtestdir";
-                    niktoset.request = requestRaw;
-                    niktoset.trigger = "";
-                    niktoset.type = "FPtestdir";
-                    niktoset.method = parts[0];
-                    niktoset.sensepostreq = "";
-
-                    string[] urlparts = new string[20];
-                    urlparts = parts[1].Split('/');
-                    string finalresult = "";
-                    for (int a = 1; a < urlparts.Length - 2; a++)
-                    {
-                        finalresult += "/" + urlparts[a];
-                    }
-
-                    result = testniktoFP(ipRaw, portRaw, niktoset, finalresult + "/mooforgetit", response);
-                }
-                else
-                {
-                    niktoset.description = "FPtestfile";
-                    niktoset.request = requestRaw;
-                    niktoset.trigger = "";
-                    niktoset.type = "FPtestfile";
-                    niktoset.method = parts[0];
-                    niktoset.sensepostreq = "";
-                    result = testniktoFP(ipRaw, portRaw, niktoset, parts[1], response);
-                }
-                if ((result < Convert.ToDouble(NUPDOWNBackEnd.Value)) && result >= 0.00)
-                {
-                    return true;
-                }
-                else { return false; }
-
-            }
-            else
-            {
-                //normal stuff
-                string[] responseline = new string[5];
-                string[] errorcodes = new string[20];
-
-                responseline = response.Split('\n');
-
-                errorcodes = errorCodes.Split(',');
-                foreach (string errorcodeItem in errorcodes)
-                {
-                    if (responseline[0].IndexOf(errorcodeItem) > 0)
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        }*/
 
         public string crop_header(string withheader)
         {
