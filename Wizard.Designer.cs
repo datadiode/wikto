@@ -127,7 +127,7 @@ namespace SensePost.Wikto
             this.btn_cancel1.TabIndex = 2;
             this.btn_cancel1.Text = "Cancel";
             this.btn_cancel1.UseVisualStyleBackColor = true;
-            this.btn_cancel1.Click += new System.EventHandler(this.btn_cancel1_Click);
+            this.btn_cancel1.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_back1
             // 
@@ -226,7 +226,7 @@ namespace SensePost.Wikto
             this.btn_cancel2.TabIndex = 7;
             this.btn_cancel2.Text = "Cancel";
             this.btn_cancel2.UseVisualStyleBackColor = true;
-            this.btn_cancel2.Click += new System.EventHandler(this.btn_cancel2_Click);
+            this.btn_cancel2.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_back2
             // 
@@ -372,7 +372,7 @@ namespace SensePost.Wikto
             this.btn_cancel3.TabIndex = 8;
             this.btn_cancel3.Text = "Cancel";
             this.btn_cancel3.UseVisualStyleBackColor = true;
-            this.btn_cancel3.Click += new System.EventHandler(this.btn_cancel3_Click);
+            this.btn_cancel3.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_back3
             // 
@@ -472,7 +472,7 @@ namespace SensePost.Wikto
             this.btn_cancel4.TabIndex = 3;
             this.btn_cancel4.Text = "Cancel";
             this.btn_cancel4.UseVisualStyleBackColor = true;
-            this.btn_cancel4.Click += new System.EventHandler(this.btn_cancel4_Click);
+            this.btn_cancel4.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_Back4
             // 
@@ -618,7 +618,7 @@ namespace SensePost.Wikto
             this.btn_cancel5.TabIndex = 3;
             this.btn_cancel5.Text = "Cancel";
             this.btn_cancel5.UseVisualStyleBackColor = true;
-            this.btn_cancel5.Click += new System.EventHandler(this.btn_cancel5_Click);
+            this.btn_cancel5.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_Back5
             // 

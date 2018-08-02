@@ -42,14 +42,9 @@ namespace SensePost.Wikto
             this.cbo_useAI.SelectedIndex = 0;
         }
 
-        private void CancelTheWizard()
+        private void btn_cancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-        }
-
-        private void btn_cancel1_Click(object sender, EventArgs e)
-        {
-            CancelTheWizard();
+            Close();
         }
 
         private void btn_next1_Click(object sender, EventArgs e)
@@ -62,11 +57,6 @@ namespace SensePost.Wikto
             tab_wizard.SelectedIndex = 0;
         }
 
-        private void btn_cancel2_Click(object sender, EventArgs e)
-        {
-            CancelTheWizard();
-        }
-
         private void btn_next2_Click(object sender, EventArgs e)
         {
             tab_wizard.SelectedIndex = 2;
@@ -75,11 +65,6 @@ namespace SensePost.Wikto
         private void btn_back3_Click(object sender, EventArgs e)
         {
             tab_wizard.SelectedIndex = 1;
-        }
-
-        private void btn_cancel3_Click(object sender, EventArgs e)
-        {
-            CancelTheWizard();
         }
 
         private void btn_next3_Click(object sender, EventArgs e)
@@ -110,19 +95,9 @@ namespace SensePost.Wikto
             tab_wizard.SelectedIndex = 4;
         }
 
-        private void btn_cancel4_Click(object sender, EventArgs e)
-        {
-            CancelTheWizard();
-        }
-
         private void btn_Back5_Click(object sender, EventArgs e)
         {
             tab_wizard.SelectedIndex = 3;
-        }
-
-        private void btn_cancel5_Click(object sender, EventArgs e)
-        {
-            CancelTheWizard();
         }
 
         private void UpdateTheScreens(object sender, EventArgs e)
@@ -154,7 +129,7 @@ namespace SensePost.Wikto
         private void btn_finish_Click(object sender, EventArgs e)
         {
             frm_wikto.SetWizScanData(txt_host.Text, txt_port.Text, cbo_protocol.Text, cbo_UseGoogle.Text, cbo_proxy.Text, txt_proxy.Text, cbo_useAI.Text);
-            CancelTheWizard();
+            Close();
         }
 
     }

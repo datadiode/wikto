@@ -246,7 +246,6 @@ namespace SensePost.Wikto
         private ProgressBar prgsGoogleHackAll;
         private TextBox txtGoogleHackTarget;
         private PictureBox pictureBox7;
-        private Button btn_GHQuit;
         private Button btn_GHStop;
         private Button btn_GHStart;
         private Label label21;
@@ -293,7 +292,6 @@ namespace SensePost.Wikto
         private Panel panel4;
         private CheckBox chkPreserve;
         private Button btn_BESkiptoDirs;
-        private Button btn_BEQuit;
         private Button btn_BEStop;
         private Button btn_BEStart;
         private Button btn_BESkiptoFiles;
@@ -388,7 +386,6 @@ namespace SensePost.Wikto
         private Label label28;
         private Label label29;
         private PictureBox pictureBox2;
-        private Button skinButtonRed1;
         private Button btn_WiktoStop;
         private Button btn_WiktoStart;
         private Label label3;
@@ -419,7 +416,6 @@ namespace SensePost.Wikto
         private Panel pnlGoogleLeft;
         private Label lblGoogleStatus;
         private PictureBox pictureBox4;
-        private Button btnGoogleQuit;
         private Button btnStopGoole;
         private Button btnGoogleStart;
         private Label label54;
@@ -451,7 +447,6 @@ namespace SensePost.Wikto
         private Label lblMirrorStatus;
         private PictureBox pictureBox6;
         private TextBox txtHTTarget;
-        private Button btn_MirrorQuit;
         private Button btnHTStop;
         private Button btnHTStart;
         private Label label32;
@@ -493,7 +488,6 @@ namespace SensePost.Wikto
         private Button btn_CnfReset;
         private Button btn_CnfSave;
         private Button btn_CnfLoad;
-        private Button btn_CnfQuit;
         private Label label37;
         private Label lblConfigFileLocation;
         private TabPage cfg_Help;
@@ -522,7 +516,6 @@ namespace SensePost.Wikto
         private TabPage cfg_Startup;
         private Button btn_ShowNews;
         private CheckBox chk_ShowStart;
-        private TabPage tab_wizard;
         private CheckBox chk_StartWiz;
         private Button btn_browseghdb;
         private Button btn_browsenikto;
@@ -652,14 +645,12 @@ namespace SensePost.Wikto
             this.txtURLUpdate = new System.Windows.Forms.TextBox();
             this.btn_ShowNews = new System.Windows.Forms.Button();
             this.chk_ShowStart = new System.Windows.Forms.CheckBox();
-            this.btn_CnfQuit = new System.Windows.Forms.Button();
             this.btn_CnfReset = new System.Windows.Forms.Button();
             this.btn_CnfSave = new System.Windows.Forms.Button();
             this.btn_CnfLoad = new System.Windows.Forms.Button();
             this.btn_GHManualQuery = new System.Windows.Forms.Button();
             this.btn_GHLoadDatabase = new System.Windows.Forms.Button();
             this.txtGoogleHackTarget = new System.Windows.Forms.TextBox();
-            this.btn_GHQuit = new System.Windows.Forms.Button();
             this.btn_GHStop = new System.Windows.Forms.Button();
             this.btn_GHStart = new System.Windows.Forms.Button();
             this.btn_BEInDirImportM = new System.Windows.Forms.Button();
@@ -667,7 +658,6 @@ namespace SensePost.Wikto
             this.btnBackEndPause = new System.Windows.Forms.Button();
             this.chkPreserve = new System.Windows.Forms.CheckBox();
             this.btn_BESkiptoDirs = new System.Windows.Forms.Button();
-            this.btn_BEQuit = new System.Windows.Forms.Button();
             this.btn_BEStop = new System.Windows.Forms.Button();
             this.btn_BEStart = new System.Windows.Forms.Button();
             this.btn_BESkiptoFiles = new System.Windows.Forms.Button();
@@ -703,10 +693,8 @@ namespace SensePost.Wikto
             this.chkuseSSLWikto = new System.Windows.Forms.CheckBox();
             this.txtNiktoPort = new System.Windows.Forms.TextBox();
             this.txtNiktoTarget = new System.Windows.Forms.TextBox();
-            this.skinButtonRed1 = new System.Windows.Forms.Button();
             this.btn_WiktoStop = new System.Windows.Forms.Button();
             this.btn_WiktoStart = new System.Windows.Forms.Button();
-            this.btnGoogleQuit = new System.Windows.Forms.Button();
             this.btnStopGoole = new System.Windows.Forms.Button();
             this.btnGoogleStart = new System.Windows.Forms.Button();
             this.txtWords = new System.Windows.Forms.TextBox();
@@ -715,7 +703,6 @@ namespace SensePost.Wikto
             this.chk_SpiderSSL = new System.Windows.Forms.CheckBox();
             this.txt_SpiderPort = new System.Windows.Forms.TextBox();
             this.txtHTTarget = new System.Windows.Forms.TextBox();
-            this.btn_MirrorQuit = new System.Windows.Forms.Button();
             this.btnHTStop = new System.Windows.Forms.Button();
             this.btnHTStart = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -979,7 +966,6 @@ namespace SensePost.Wikto
             this.label37 = new System.Windows.Forms.Label();
             this.lblConfigFileLocation = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.tab_wizard = new System.Windows.Forms.TabPage();
             this.fdlLoadBackEndDirs = new System.Windows.Forms.OpenFileDialog();
             this.fdlLoadBackEndFiles = new System.Windows.Forms.OpenFileDialog();
             this.fdlLoadBackEndExt = new System.Windows.Forms.OpenFileDialog();
@@ -1398,19 +1384,6 @@ namespace SensePost.Wikto
             this.chk_ShowStart.UseVisualStyleBackColor = true;
             this.chk_ShowStart.CheckedChanged += new System.EventHandler(this.chk_ShowStart_CheckedChanged);
             // 
-            // btn_CnfQuit
-            // 
-            this.btn_CnfQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
-            this.btn_CnfQuit.ForeColor = System.Drawing.Color.Brown;
-            this.btn_CnfQuit.Location = new System.Drawing.Point(121, 86);
-            this.btn_CnfQuit.Name = "btn_CnfQuit";
-            this.btn_CnfQuit.Size = new System.Drawing.Size(86, 28);
-            this.btn_CnfQuit.TabIndex = 5;
-            this.btn_CnfQuit.Text = "Quit";
-            this.toolTip1.SetToolTip(this.btn_CnfQuit, "Quit Wikto");
-            this.btn_CnfQuit.UseVisualStyleBackColor = true;
-            this.btn_CnfQuit.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // btn_CnfReset
             // 
             this.btn_CnfReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
@@ -1487,19 +1460,6 @@ namespace SensePost.Wikto
             this.txtGoogleHackTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.txtGoogleHackTarget, "Site to search");
             // 
-            // btn_GHQuit
-            // 
-            this.btn_GHQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
-            this.btn_GHQuit.ForeColor = System.Drawing.Color.Brown;
-            this.btn_GHQuit.Location = new System.Drawing.Point(121, 59);
-            this.btn_GHQuit.Name = "btn_GHQuit";
-            this.btn_GHQuit.Size = new System.Drawing.Size(86, 28);
-            this.btn_GHQuit.TabIndex = 4;
-            this.btn_GHQuit.Text = "Quit";
-            this.toolTip1.SetToolTip(this.btn_GHQuit, "Quit Wikto");
-            this.btn_GHQuit.UseVisualStyleBackColor = true;
-            this.btn_GHQuit.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // btn_GHStop
             // 
             this.btn_GHStop.Enabled = false;
@@ -1558,7 +1518,7 @@ namespace SensePost.Wikto
             this.btnBackEndPause.Enabled = false;
             this.btnBackEndPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
             this.btnBackEndPause.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBackEndPause.Location = new System.Drawing.Point(121, 86);
+            this.btnBackEndPause.Location = new System.Drawing.Point(121, 59);
             this.btnBackEndPause.Name = "btnBackEndPause";
             this.btnBackEndPause.Size = new System.Drawing.Size(86, 28);
             this.btnBackEndPause.TabIndex = 256;
@@ -1592,19 +1552,6 @@ namespace SensePost.Wikto
             this.toolTip1.SetToolTip(this.btn_BESkiptoDirs, "Skip to scanning directories");
             this.btn_BESkiptoDirs.UseVisualStyleBackColor = true;
             this.btn_BESkiptoDirs.Click += new System.EventHandler(this.btnSkipFile_Click);
-            // 
-            // btn_BEQuit
-            // 
-            this.btn_BEQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
-            this.btn_BEQuit.ForeColor = System.Drawing.Color.Brown;
-            this.btn_BEQuit.Location = new System.Drawing.Point(121, 59);
-            this.btn_BEQuit.Name = "btn_BEQuit";
-            this.btn_BEQuit.Size = new System.Drawing.Size(86, 28);
-            this.btn_BEQuit.TabIndex = 4;
-            this.btn_BEQuit.Text = "Quit";
-            this.toolTip1.SetToolTip(this.btn_BEQuit, "Quit Wikto");
-            this.btn_BEQuit.UseVisualStyleBackColor = true;
-            this.btn_BEQuit.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btn_BEStop
             // 
@@ -2064,19 +2011,6 @@ namespace SensePost.Wikto
             this.txtNiktoTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.txtNiktoTarget, "The target host (ie: localhost)");
             // 
-            // skinButtonRed1
-            // 
-            this.skinButtonRed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
-            this.skinButtonRed1.ForeColor = System.Drawing.Color.Brown;
-            this.skinButtonRed1.Location = new System.Drawing.Point(121, 59);
-            this.skinButtonRed1.Name = "skinButtonRed1";
-            this.skinButtonRed1.Size = new System.Drawing.Size(86, 28);
-            this.skinButtonRed1.TabIndex = 4;
-            this.skinButtonRed1.Text = "Quit";
-            this.toolTip1.SetToolTip(this.skinButtonRed1, "Quit Wikto");
-            this.skinButtonRed1.UseVisualStyleBackColor = true;
-            this.skinButtonRed1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // btn_WiktoStop
             // 
             this.btn_WiktoStop.Enabled = false;
@@ -2103,19 +2037,6 @@ namespace SensePost.Wikto
             this.toolTip1.SetToolTip(this.btn_WiktoStart, "Start the Scan");
             this.btn_WiktoStart.UseVisualStyleBackColor = true;
             this.btn_WiktoStart.Click += new System.EventHandler(this.btnStartNikto_Click);
-            // 
-            // btnGoogleQuit
-            // 
-            this.btnGoogleQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
-            this.btnGoogleQuit.ForeColor = System.Drawing.Color.Brown;
-            this.btnGoogleQuit.Location = new System.Drawing.Point(121, 59);
-            this.btnGoogleQuit.Name = "btnGoogleQuit";
-            this.btnGoogleQuit.Size = new System.Drawing.Size(86, 28);
-            this.btnGoogleQuit.TabIndex = 4;
-            this.btnGoogleQuit.Text = "Quit";
-            this.toolTip1.SetToolTip(this.btnGoogleQuit, "Quit Wikto");
-            this.btnGoogleQuit.UseVisualStyleBackColor = true;
-            this.btnGoogleQuit.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnStopGoole
             // 
@@ -2222,19 +2143,6 @@ namespace SensePost.Wikto
             this.txtHTTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.txtHTTarget, "The target host (ie: localhost)");
             // 
-            // btn_MirrorQuit
-            // 
-            this.btn_MirrorQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
-            this.btn_MirrorQuit.ForeColor = System.Drawing.Color.Brown;
-            this.btn_MirrorQuit.Location = new System.Drawing.Point(121, 59);
-            this.btn_MirrorQuit.Name = "btn_MirrorQuit";
-            this.btn_MirrorQuit.Size = new System.Drawing.Size(86, 28);
-            this.btn_MirrorQuit.TabIndex = 4;
-            this.btn_MirrorQuit.Text = "Quit";
-            this.toolTip1.SetToolTip(this.btn_MirrorQuit, "Quit Wikto");
-            this.btn_MirrorQuit.UseVisualStyleBackColor = true;
-            this.btn_MirrorQuit.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // btnHTStop
             // 
             this.btnHTStop.Enabled = false;
@@ -2265,13 +2173,14 @@ namespace SensePost.Wikto
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl1.Controls.Add(this.Mirror);
-            this.tabControl1.Controls.Add(this.Googler);
-            this.tabControl1.Controls.Add(this.BackEndMiner);
-            this.tabControl1.Controls.Add(this.NiktoIsh);
-            this.tabControl1.Controls.Add(this.GoogleHacks);
-            this.tabControl1.Controls.Add(this.pnl_configleft);
-            this.tabControl1.Controls.Add(this.tab_wizard);
+            this.tabControl1.TabPages.Add(Mirror);
+            this.tabControl1.TabPages.Add(Googler);
+            this.tabControl1.TabPages.Add(BackEndMiner);
+            this.tabControl1.TabPages.Add(NiktoIsh);
+            this.tabControl1.TabPages.Add(GoogleHacks);
+            this.tabControl1.TabPages.Add(pnl_configleft);
+            this.tabControl1.TabPages.Add("Scan Wizard");
+            this.tabControl1.TabPages.Add("Quit");
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 0);
             this.tabControl1.Name = "tabControl1";
@@ -2279,7 +2188,7 @@ namespace SensePost.Wikto
             this.tabControl1.Size = new System.Drawing.Size(1013, 741);
             this.tabControl1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.tabControl1, "Pause / Resume a Scan");
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.CheckIfIShouldStartTheWizard);
+            this.tabControl1.Selecting += new TabControlCancelEventHandler(this.CheckIfIShouldStartTheWizard);
             // 
             // Mirror
             // 
@@ -2496,7 +2405,6 @@ namespace SensePost.Wikto
             this.pnlMirrorLeft.Controls.Add(this.lblMirrorStatus);
             this.pnlMirrorLeft.Controls.Add(this.pictureBox6);
             this.pnlMirrorLeft.Controls.Add(this.txtHTTarget);
-            this.pnlMirrorLeft.Controls.Add(this.btn_MirrorQuit);
             this.pnlMirrorLeft.Controls.Add(this.btnHTStop);
             this.pnlMirrorLeft.Controls.Add(this.btnHTStart);
             this.pnlMirrorLeft.Controls.Add(this.label32);
@@ -2873,7 +2781,6 @@ namespace SensePost.Wikto
             this.pnlGoogleLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGoogleLeft.Controls.Add(this.lblGoogleStatus);
             this.pnlGoogleLeft.Controls.Add(this.pictureBox4);
-            this.pnlGoogleLeft.Controls.Add(this.btnGoogleQuit);
             this.pnlGoogleLeft.Controls.Add(this.btnStopGoole);
             this.pnlGoogleLeft.Controls.Add(this.btnGoogleStart);
             this.pnlGoogleLeft.Controls.Add(this.label54);
@@ -3505,7 +3412,6 @@ namespace SensePost.Wikto
             this.panel4.Controls.Add(this.btnBackEndPause);
             this.panel4.Controls.Add(this.chkPreserve);
             this.panel4.Controls.Add(this.btn_BESkiptoDirs);
-            this.panel4.Controls.Add(this.btn_BEQuit);
             this.panel4.Controls.Add(this.btn_BEStop);
             this.panel4.Controls.Add(this.btn_BEStart);
             this.panel4.Controls.Add(this.btn_BESkiptoFiles);
@@ -4251,7 +4157,6 @@ namespace SensePost.Wikto
             this.panel5.Controls.Add(this.groupBox13);
             this.panel5.Controls.Add(this.groupBox14);
             this.panel5.Controls.Add(this.pictureBox2);
-            this.panel5.Controls.Add(this.skinButtonRed1);
             this.panel5.Controls.Add(this.btn_WiktoStop);
             this.panel5.Controls.Add(this.btn_WiktoStart);
             this.panel5.Controls.Add(this.label3);
@@ -4303,7 +4208,7 @@ namespace SensePost.Wikto
             this.btnPauseWikto.Enabled = false;
             this.btnPauseWikto.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold);
             this.btnPauseWikto.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPauseWikto.Location = new System.Drawing.Point(121, 86);
+            this.btnPauseWikto.Location = new System.Drawing.Point(121, 59);
             this.btnPauseWikto.Name = "btnPauseWikto";
             this.btnPauseWikto.Size = new System.Drawing.Size(86, 28);
             this.btnPauseWikto.TabIndex = 257;
@@ -4663,7 +4568,6 @@ namespace SensePost.Wikto
             this.panel6.Controls.Add(this.prgsGoogleHackAll);
             this.panel6.Controls.Add(this.txtGoogleHackTarget);
             this.panel6.Controls.Add(this.pictureBox7);
-            this.panel6.Controls.Add(this.btn_GHQuit);
             this.panel6.Controls.Add(this.btn_GHStop);
             this.panel6.Controls.Add(this.btn_GHStart);
             this.panel6.Controls.Add(this.label21);
@@ -5335,7 +5239,6 @@ namespace SensePost.Wikto
             this.panel1.AutoScrollMinSize = new System.Drawing.Size(220, 670);
             this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btn_CnfQuit);
             this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.lblConfigFileLocation);
             this.panel1.Controls.Add(this.btn_CnfReset);
@@ -5380,16 +5283,6 @@ namespace SensePost.Wikto
             this.pictureBox5.Size = new System.Drawing.Size(108, 84);
             this.pictureBox5.TabIndex = 119;
             this.pictureBox5.TabStop = false;
-            // 
-            // tab_wizard
-            // 
-            this.tab_wizard.BackColor = System.Drawing.Color.DarkGray;
-            this.tab_wizard.Location = new System.Drawing.Point(4, 25);
-            this.tab_wizard.Name = "tab_wizard";
-            this.tab_wizard.Size = new System.Drawing.Size(1005, 712);
-            this.tab_wizard.TabIndex = 6;
-            this.tab_wizard.Text = "Scan Wizard";
-            this.tab_wizard.UseVisualStyleBackColor = true;
             // 
             // fdlLoadBackEndDirs
             // 
@@ -9121,18 +9014,6 @@ namespace SensePost.Wikto
             btnBackEndPause.Text = "Pause";
             btnBackEndPause.Enabled = false;
 		}
-		private void btnQuit3_Click(object sender, System.EventArgs e) {
-			Quitter();
-		}
-		private void button5_Click(object sender, System.EventArgs e) {
-			Quitter();
-		}
-		private void button3_Click(object sender, System.EventArgs e) {
-			Quitter();
-		}
-		private void btnQuit5_Click(object sender, System.EventArgs e) {
-			Quitter();
-		}
 		private void button1_Click_1(object sender, System.EventArgs e)
 		{
 			Quitter();
@@ -9161,15 +9042,18 @@ namespace SensePost.Wikto
         #endregion
 
         #region Scan Wizard Routines
-        private void CheckIfIShouldStartTheWizard(object sender, EventArgs e)
+        private void CheckIfIShouldStartTheWizard(object sender, TabControlCancelEventArgs e)
         {
-            if (this.tabControl1.SelectedIndex == 6)
+            switch (e.TabPageIndex)
             {
-                Wizard thewiz = new Wizard(this);
-                this.tabControl1.SelectedIndex = 0;
-                thewiz.ShowDialog();
-                thewiz.Dispose();
-                thewiz = null;
+            case 6:
+                using (Wizard dlg = new Wizard(this)) dlg.ShowDialog();
+                e.Cancel = true;
+                break;
+            case 7:
+                Quitter();
+                e.Cancel = true;
+                break;
             }
         }
 
